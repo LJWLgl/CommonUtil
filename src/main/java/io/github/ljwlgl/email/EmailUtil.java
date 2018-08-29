@@ -1,4 +1,4 @@
-package cn.ganzhiqiang.email;
+package io.github.ljwlgl.email;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;
