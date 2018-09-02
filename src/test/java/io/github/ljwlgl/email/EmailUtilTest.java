@@ -11,7 +11,7 @@ public class EmailUtilTest {
     @Before
     public void before() throws GeneralSecurityException {
         // 配置，一次即可
-        EmailUtil.config(EmailUtil.SMTP_QQ(false), "2582654085@qq.com", "dzdcmbfghbomeadg");
+        EmailUtil.config(EmailUtil.SMTP_QQ(false), "xxx@qq.com", "xxxxxx");
     }
 
     @Test
