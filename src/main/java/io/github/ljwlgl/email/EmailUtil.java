@@ -10,6 +10,7 @@ import java.util.*;
 /**
  * @author zqgan
  * @since 2018/08/28
+ * 发送邮件相关类
  **/
 
 public class EmailUtil {

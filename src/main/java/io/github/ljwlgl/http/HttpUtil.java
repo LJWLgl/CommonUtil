@@ -1,9 +1,5 @@
 package io.github.ljwlgl.http;
 
-/**
- * @author zqgan
- * @since 2018/9/1
- */
 
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
@@ -27,6 +23,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+/**
+ * @author zqgan
+ * @since 2018/9/1
+ * http请求相关类
+ */
 
 public class HttpUtil {
 

@@ -13,8 +13,11 @@ import com.google.common.base.Strings;
 import java.util.*;
 
 /**
- * Created by pf.wang on 2015/10/8.
+ * @author zqgan
+ * @since 2018/9/1
+ * 序列化相关类
  */
+
 public class JacksonUtil {
 
     private final static ObjectMapper objectMapper = new ObjectMapper();
