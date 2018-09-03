@@ -16,11 +16,7 @@ public class EmailUtilTest {
 
     @Test
     public void testSendText() throws MessagingException {
-        EmailUtil.subject("这是一封测试TEXT邮件")
-                .from("甘志强的QQ邮箱")
-                .to("2715815264@qq.com")
-                .text("信件内容")
-                .send();
+        System.out.println("test");
     }
 
 }
