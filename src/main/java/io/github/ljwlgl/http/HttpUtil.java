@@ -159,4 +159,5 @@ public class HttpUtil {
     httpResponse.close();
     return EntityUtils.toString(entity, DEFAULT_CHARSET);
   }
+
 }
