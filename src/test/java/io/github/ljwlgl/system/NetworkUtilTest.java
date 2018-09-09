@@ -14,6 +14,6 @@ public class NetworkUtilTest {
 
   @Test
   public void getLocalHostName() throws Exception {
-
+    System.out.println(NetworkUtil.getLocalHostName());
   }
 }
