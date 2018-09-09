@@ -44,7 +44,7 @@
 - **removeSchema(Object obj)**，把soa 契约类的schema字段删除
 - **json2pojo(String jsonStr, Class<T> clazz)**，把jsonStr反序列化成Class
 - **json2pojoSafe(String jsonStr, Class<T> clazz)**，把jsonStr反序列化成Class，内部处理了异常
-- ** json2list(String jsonArrayStr, Class<T> clazz)**，把jsonStr反序列化成Object List
+- **json2list(String jsonArrayStr, Class<T> clazz)**，把jsonStr反序列化成Object List
 - **json2map(String jsonStr)**，把jsonStr反序列化成map
 - **json2map(String jsonStr, Class<T> clazz)**，把jsonStr反序列成包含JavaBean的Map
 
