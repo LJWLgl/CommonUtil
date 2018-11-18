@@ -33,7 +33,6 @@ public class JsonUtil {
                 result = JSON.parseObject(text, clazz);
             }
         } catch (Exception var4) {
-            ;
         }
 
         return (T) result;
@@ -86,7 +85,6 @@ public class JsonUtil {
                 jsonStr = JSON.toJSONString(object, filter, new SerializerFeature[0]);
             }
         } catch (Exception var8) {
-            ;
         }
 
         return jsonStr;

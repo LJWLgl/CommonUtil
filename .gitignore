@@ -61,3 +61,6 @@ nohup.out
 misc.prop
 tags
 *.bak
+.markeditor
+
+.Archive
