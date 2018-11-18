@@ -6,7 +6,7 @@
 
     <groupId>io.github.ljwlgl</groupId>
     <artifactId>common-util</artifactId>
-    <version>2.0.3</version>
+    <version>2.0.5</version>
     <name>common-util</name>
     <url>https://github.com/LJWLgl/CommonUtil</url>
     <description>Commonly used tools for business development</description>
