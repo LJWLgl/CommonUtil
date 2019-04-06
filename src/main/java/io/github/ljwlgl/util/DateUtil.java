@@ -1,4 +1,4 @@
-package io.github.ljwlgl.date;
+package io.github.ljwlgl.util;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -15,8 +15,13 @@ import java.util.TimeZone;
 
 public class DateUtil {
 
-    public static final String SIMPLE_DATETIME_FORMAT = "yyyy-MM-dd";
-    public static final String DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    public static final String YYYYMMDD = "yyyy-MM-dd";
+    public static final String YYYYMMDDHHMMSS = "yyyy-MM-dd HH:mm:ss";
+    public static final String YYYYMMDDHHMMSSSSS = "yyyy-MM-dd HH:mm:ss.SSS";
+
+    public static final String YYYYMMDDHHMM_CHINESE = "yyyy年MM月dd日HH点mm分";
+    public static final String YYYYMMDD_CHINESE = "yyyy年MM月dd日";
+    public static final String MMDD_CHINESE = "MM月dd日";
 
     public static final long MILLISECONDS_FOR_ONE_MINUTE = 60 * 1000;
     public static final long MILLISECONDS_FOR_ONE_HOUR = 60 * MILLISECONDS_FOR_ONE_MINUTE;
@@ -42,6 +47,36 @@ public class DateUtil {
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         return c;
+    }
+
+    public static int calcIntervalDays(String dateStr1, String dateStr2) {
+        return calcIntervalDays(stringToDate(dateStr1), stringToDate(dateStr2));
+    }
+
+    /**
+     * 计算两个时间的间隔小时，只会整除
+     */
+    public static int calcIntervalOurs(Date date1, Date date2) {
+        if (date2.after(date1))  {
+            return Long.valueOf((date2.getTime() - date1.getTime()) / (1000 * 60 * 60)).intValue();
+        } else if (date2.before(date1)) {
+            return Long.valueOf((date1.getTime() - date2.getTime()) / (1000 * 60 * 60)).intValue();
+        } else {
+            return 0;
+        }
+    }
+
+    /**
+     * 计算两个时间的间隔小时，只会整除
+     */
+    public static int calcIntervalMinutes(Date date1, Date date2) {
+        if (date2.after(date1))  {
+            return Long.valueOf((date2.getTime() - date1.getTime()) / (1000 * 60)).intValue();
+        } else if (date2.before(date1)) {
+            return Long.valueOf((date1.getTime() - date2.getTime()) / (1000 * 60)).intValue();
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -117,10 +152,14 @@ public class DateUtil {
             }
         } else if (dateStr.contains("-")) {
             if (dateStr.contains(":") && dateStr.contains(" ")) {
-                format = new SimpleDateFormat(DATETIME_FORMAT);
+                format = new SimpleDateFormat(YYYYMMDDHHMMSS);
             } else {
-                format = new SimpleDateFormat(SIMPLE_DATETIME_FORMAT);
+                format = new SimpleDateFormat(YYYYMMDD);
             }
+        } else if (dateStr.contains("年") && dateStr.contains("月") && dateStr.contains("日")) {
+            format = new SimpleDateFormat(YYYYMMDD_CHINESE);
+        } else  if(! dateStr.contains("年") && dateStr.contains("月") && dateStr.contains("日")) {
+            format = new SimpleDateFormat(MMDD_CHINESE);
         }
         if (format == null) {
             return null;

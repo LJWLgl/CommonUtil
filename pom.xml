@@ -94,6 +94,24 @@
             <artifactId>jackson-annotations</artifactId>
             <version>2.8.5</version>
         </dependency>
+        <!-- json end -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.6</version>
+        </dependency>
+        <!-- protobuf begin -->
+        <dependency>
+            <groupId>com.dyuproject.protostuff</groupId>
+            <artifactId>protostuff-core</artifactId>
+            <version>1.0.12</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dyuproject.protostuff</groupId>
+            <artifactId>protostuff-runtime</artifactId>
+            <version>1.0.12</version>
+        </dependency>
+        <!-- protobuf end -->
     </dependencies>
 
     <profiles>

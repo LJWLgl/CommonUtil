@@ -1,5 +1,6 @@
-package io.github.ljwlgl.email;
+package io.github.ljwlgl.util;
 
+import io.github.ljwlgl.util.EmailUtil;
 import org.junit.Before;
 import org.junit.Test;
 

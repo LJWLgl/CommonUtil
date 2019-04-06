@@ -1,4 +1,4 @@
-package io.github.ljwlgl.system;
+package io.github.ljwlgl.util;
 
 import java.net.*;
 import java.util.ArrayList;

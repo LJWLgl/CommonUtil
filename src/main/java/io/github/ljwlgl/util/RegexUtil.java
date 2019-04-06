@@ -1,4 +1,4 @@
-package io.github.ljwlgl.regex;
+package io.github.ljwlgl.util;
 
 import java.util.regex.Pattern;
 

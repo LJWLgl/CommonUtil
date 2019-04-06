@@ -1,4 +1,4 @@
-package io.github.ljwlgl.serialize;
+package io.github.ljwlgl.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -10,13 +10,13 @@ import java.util.List;
 /**
  * @author zqgan
  * @since 2018/9/14
+ * 对象深度拷贝工具类
  **/
 
-public class BeanUtil {
+public class DeepCopyUtil {
 
     /**
-     * object  list depthClone
-     * need implements java.io.Serializable
+     * 单个对象的深拷贝，srcObj对应的需实现java.io.Serializable接口
      * @param srcObj obj
      * @return new  obj
      */
@@ -37,8 +37,7 @@ public class BeanUtil {
     }
 
     /**
-     * object  list depthClone
-     * need implements java.io.Serializable
+     * 多个对象的深拷贝，srcObj对应的需实现java.io.Serializable接口
      * @param list obj
      * @return new list obj
      */

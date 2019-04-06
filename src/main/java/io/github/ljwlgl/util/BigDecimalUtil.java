@@ -1,4 +1,4 @@
-package io.github.ljwlgl.calculation;
+package io.github.ljwlgl.util;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

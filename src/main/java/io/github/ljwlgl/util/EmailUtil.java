@@ -1,4 +1,4 @@
-package io.github.ljwlgl.email;
+package io.github.ljwlgl.util;
 
 import javax.activation.DataHandler;
 import javax.activation.FileDataSource;

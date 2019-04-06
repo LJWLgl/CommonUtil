@@ -1,8 +1,7 @@
-package io.github.ljwlgl.system;
+package io.github.ljwlgl.util;
 
+import io.github.ljwlgl.util.NetworkUtil;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class NetworkUtilTest {
 

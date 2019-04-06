@@ -1,4 +1,4 @@
-package io.github.ljwlgl.file;
+package io.github.ljwlgl.util;
 
 import java.io.IOException;
 import java.io.InputStream;

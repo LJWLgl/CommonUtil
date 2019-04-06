@@ -1,4 +1,4 @@
-package io.github.ljwlgl.serialize;
+package io.github.ljwlgl.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
