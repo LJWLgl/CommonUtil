@@ -120,11 +120,23 @@ public class DateUtil {
     /**
      * 获取指定间隔天数的日期
      */
-    public static Date getIntervalDate(Date time, int days) {
+    public static Date getIntervalDaysDate(Date time, int days) {
         Calendar ca = Calendar.getInstance();
         ca.setTime(time);
         ca.add(Calendar.DATE, days);
         return stringToDate(dateToShortDateString(ca.getTime()));
+    }
+
+
+    /**
+     * 获取间隔的几个小时，如需要获取之前的3小时，hours传-3
+     */
+    public static Date getIntervalHourDate(Date time, int hours) {
+        Calendar ca = Calendar.getInstance();
+        ca.setTime(time);
+        ca.add(Calendar.HOUR, hours);
+        System.out.println(dateToString(ca.getTime(), YYYYMMDDHHMM_CHINESE));
+        return ca.getTime();
     }
 
     public static String dateToShortDateString(Date date) {
@@ -199,7 +211,7 @@ public class DateUtil {
                 }
             }
 
-            if (isSameDay(date, getIntervalDate(now, -1))) {
+            if (isSameDay(date, getIntervalDaysDate(now, -1))) {
                 return String.format("昨天 %d:%02d", dateCalendar.get(Calendar.HOUR_OF_DAY),
                         dateCalendar.get(Calendar.MINUTE));
             } else {

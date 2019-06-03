@@ -11,6 +11,10 @@ import java.math.RoundingMode;
 
 public class BigDecimalUtil {
 
+    public static int main(String[] args) {
+        return 0;
+    }
+
     public static double subtract(double x, double y) {
         BigDecimal d1 = new BigDecimal(x);
         BigDecimal d2 = new BigDecimal(y);

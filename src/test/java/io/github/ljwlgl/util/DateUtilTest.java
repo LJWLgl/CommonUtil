@@ -16,6 +16,12 @@ public class DateUtilTest {
     }
 
     @Test
+    public void test03() {
+        Date oldTime = DateUtil.getIntervalHour(new Date(), -3);
+        System.out.println(oldTime);
+    }
+
+    @Test
     public void testDateToVoString() {
         Date date = DateUtil.stringToDate("2018年5月2日");
         System.out.println(DateUtil.dateToVoString(date));
