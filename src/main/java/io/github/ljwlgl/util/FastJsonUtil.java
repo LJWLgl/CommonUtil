@@ -103,7 +103,7 @@ public class FastJsonUtil {
     }
 
     /**
-     * 根据path替换指定属性
+     * 根据path替换指定属性, 只支持JSONObject
      * @param json 原json串
      * @param path 需要替换的json路径
      * @return 新的json串
@@ -124,6 +124,38 @@ public class FastJsonUtil {
             return json;
         }
         object.replace(keys[keys.length - 1], value);
+        return toJsonString(preObject);
+    }
+
+    /**
+     * 根据path替换指定属性, 支持JSONArray，但是不支持路径表达式
+     * @param json 原json串
+     * @param path 需要替换的json路径
+     * @return 新的json串
+     */
+    public static String replaceNew(String json, String path, String value) {
+        if (StringUtils.isEmpty(path)) {
+            return json;
+        }
+        String[] keys = null;
+        if (path.contains(".")) {
+            keys = path.split("\\.");
+        } else {
+            keys = new String[]{path};
+        }
+        List<JSONObject> res = new ArrayList<>();
+        JSONObject preObject = parseObject(json);
+        getJSONObjectByKeys(res, preObject, keys, 1);
+        if (CollectionUtils.isEmpty(res)) {
+            return json;
+        }
+        for (int j=0; j < res.size(); j++) {
+            Object oldValue = res.get(j).get(keys[keys.length - 1]);
+            if (oldValue == null) {
+                continue;
+            }
+            res.get(j).replace(keys[keys.length - 1], String.valueOf(value));
+        }
         return toJsonString(preObject);
     }
 
@@ -436,6 +468,5 @@ public class FastJsonUtil {
         }
         return result;
     }
-
 
 }

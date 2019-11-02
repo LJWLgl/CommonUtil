@@ -17,8 +17,8 @@ public class DateUtilTest {
 
     @Test
     public void test03() {
-        Date oldTime = DateUtil.getIntervalHour(new Date(), -3);
-        System.out.println(oldTime);
+//        Date oldTime = DateUtil.getIntervalHour(new Date(), -3);
+//        System.out.println(oldTime);
     }
 
     @Test
