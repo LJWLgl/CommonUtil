@@ -246,6 +246,15 @@ public class RegexUtils {
     }
 
     /**
+     * 只保留汉字和字母
+     * @param input 待输入文本
+     * @return 只保留汉字和字母的字符串
+     */
+    public static String getOnlyZHAndLetterChar(String input) {
+        return input.replaceAll("[[^\u4E00-\u9FA5]&&[^a-zA-Z0-9]]", "");
+    }
+
+    /**
      * 判断是否匹配正则
      *
      * @param regex 正则表达式
