@@ -108,11 +108,18 @@ public class RegexUtils {
      * 正则：负浮点数
      */
     public static final String REGEX_NEGATIVE_FLOAT       = "^-[1-9]\\d*\\.\\d*|-0\\.\\d*[1-9]\\d*$";
-
     /**
      * 正则：只有数字
      */
     public static final String REGEX_NUMBER               = "[0-9]*";
+    /**
+     * 正则：只有字母
+     */
+    public static final String REGEX_LETTER               = "^[A-Za-z]+$";
+    /**
+     * 正则：字母、数字及下划线
+     */
+    public static final String REGEX_NUMBER_LETTER        = "^[0-9a-zA-Z-][\\w-_]{1,}$";
 
     private RegexUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
@@ -125,6 +132,42 @@ public class RegexUtils {
      */
     public static boolean isNumeric(CharSequence input) {
         return isMatch(REGEX_NUMBER, input);
+    }
+
+    /**
+     * 验证是否是正浮点数
+     * @param input 待验证文本
+     * @return {@code true}: 匹配<br>{@code false}: 不匹配
+     */
+    public static boolean isPositiveFloat(CharSequence input) {
+        return isMatch(REGEX_POSITIVE_FLOAT, input);
+    }
+
+    /**
+     * 验证是否是正浮点数
+     * @param input 待验证文本
+     * @return {@code true}: 匹配<br>{@code false}: 不匹配
+     */
+    public static boolean isNegativeFloat(CharSequence input) {
+        return isMatch(REGEX_NEGATIVE_FLOAT, input);
+    }
+
+    /**
+     * 验证是否只包含字母、数字及下划线
+     * @param input 待验证文本
+     * @return {@code true}: 匹配<br>{@code false}: 不匹配
+     */
+    public static boolean isLetterAndNum(CharSequence input) {
+        return isMatch(REGEX_NUMBER_LETTER, input);
+    }
+
+    /**
+     * 验证是否只包含字母
+     * @param input 待验证文本
+     * @return {@code true}: 匹配<br>{@code false}: 不匹配
+     */
+    public static boolean isLetter(CharSequence input) {
+        return isMatch(REGEX_LETTER, input);
     }
 
 

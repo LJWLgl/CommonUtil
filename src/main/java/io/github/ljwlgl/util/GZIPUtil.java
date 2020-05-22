@@ -10,8 +10,10 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 /**
- * Created by zczhang on 2017/4/18.
- */
+ * @author zqgan
+ * @since 2019/4/8
+ **/
+
 public class GZIPUtil {
 
     private static Logger logger = LoggerFactory.getLogger(GZIPUtil.class);
@@ -66,7 +68,7 @@ public class GZIPUtil {
             try {
                 gzip = new GZIPOutputStream(out);
                 gzip.write(bytes);
-               
+
             } catch (IOException e) {
                 logger.error(e.getMessage(), e);
             }finally {
@@ -102,7 +104,7 @@ public class GZIPUtil {
                     out.write(buffer, 0, n);
                 }
                 in.close();
-              
+
             } catch (IOException e) {
                 logger.error(e.getMessage(), e);
             }finally {
