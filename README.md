@@ -1,7 +1,7 @@
-### 概述
+## 概述
 开发常用工具类总结，如果对你有用欢迎star~
 
-### 导入项目
+## 导入项目
 ```
 <dependency>
       <groupId>io.github.ljwlgl</groupId>
@@ -9,6 +9,7 @@
       <version>2.0.7</version>
 </dependency>
 ```
+## 工具类介绍
 
 ### FastJsonUtil(FastJson工具类)
 - **toJsonString(Object object)**, 序列化Json
@@ -49,6 +50,8 @@
 - **isMatch(String regex, CharSequence input)**，是否匹配正则表达式
 - **getMatches(String regex, CharSequence input)**，获取正则表达式的部分
 - ...
+
+### LanguageUtil(语言工具类)
 
 ### NetworkUtil(获取本地IP和主机名工具类)
 拿到本机IP不是一件困难的事，但是拿到正确的就比较难了，本工具类，是参考了开源项目[CAT](https://github.com/dianping/cat)内部的实现，提供静态方法如下：
@@ -97,4 +100,5 @@ public class EmailUtilTest {
 - **compress(String str, String encoding)**，字符串压缩为GZIP字节数组
 - **uncompress(byte[] bytes)**，GZIP解压缩
 
-
+## 更新日志
+- 2020-05-22，新增LanguageUtil & 升级pom
