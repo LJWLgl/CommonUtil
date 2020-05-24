@@ -25,7 +25,7 @@ public class GenericsUtils {
      * @param maxSize 限制大小
      * @param apply 回调函数即为原先无限制大小限制的函数
      */
-    public <K, V> Map<K, V> getHotelCoordinateEntityMap3(List<K> list, int maxSize, BatchApply<K, V> apply) {
+    public <K, V> Map<K, V> batchInvoke(List<K> list, int maxSize, BatchApply<K, V> apply) {
         Map<K, V> map = new HashMap<>();
         if (list.size() > maxSize) {
             int index = 1;

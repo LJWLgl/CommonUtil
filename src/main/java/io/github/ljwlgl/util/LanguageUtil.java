@@ -18,7 +18,7 @@ public class LanguageUtil {
     }
 
     /**
-     * 是否只有数字和空格
+     * 是否只有字母和空格
      */
     public static boolean isLetter(String str) {
         return str != null && str.length() > 0 && Pattern.matches("^[A-Za-z\\u0020]+$", str);
