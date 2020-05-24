@@ -458,6 +458,11 @@ public class FastJsonUtil {
         return true;
     }
 
+    /**
+     * 判断是否是Json串
+     * @param str 检测字符串
+     * @return bool
+     */
     public static boolean isJSON(String str) {
         boolean result = false;
         try {

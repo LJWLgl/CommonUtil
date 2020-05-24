@@ -15,6 +15,7 @@ Java开发常用工具类总结，如果对你有用欢迎点个start，此外�
 借助FastJson实现序列化和反序列，同时自己实现了Json节点增删改，以及Json关键字段脱敏
 - **toJsonString(Object object)**, 序列化Json
 - **toJsonString(Object object, String... reAttrs)**，序列化Json转时删除不必要的属性
+- **isJSON(String str)**，判断是否是Json串
 - **eval(String json, String path)**, 从Json中根据Path取出对象
 - **eval(String json, String path, Class<T> clz)**, 根据path从json中取出结果并反序列成JavaBean
 - **List<T> evals(String json, String path, Class<T> clz)**, 根据path从json中取出结果并反序列成JavaBean，该方法只支持array
@@ -124,6 +125,8 @@ public class EmailUtilTest {
 <a href="https://github.com/LJWLgl">
     <img src="https://avatars1.githubusercontent.com/u/22522146?s=460&u=34378925405f18325ea493aa7df788410d6204e3&v=4" width="45px">
 </a>
-
+<a href="https://github.com/fansengithub">
+    <img src="https://avatars1.githubusercontent.com/u/16862948?s=400&v=4" width="45px">
+</a>
 ## 更新日志
 - 2020-05-22，新增LanguageUtil & 升级pom
