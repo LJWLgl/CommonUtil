@@ -1,5 +1,10 @@
+## 目录
+
+[TOC]
+
 ## 概述
-Java开发常用工具类总结，如果对你有用欢迎点个start，此外，如果你有兴趣和我一起维护该仓库，欢迎提PR或者issue，让我们为拥有一个更强大的工具库而一同努力。
+
+本仓库是Java开发常用工具类的总结，如果对你有用欢迎点个start，此外，如果你有兴趣和我一起维护该仓库，欢迎提PR或者issue，让我们为拥有一个更强大的工具库而一同努力。
 
 ## 导入项目
 ```
@@ -10,7 +15,6 @@ Java开发常用工具类总结，如果对你有用欢迎点个start，此外�
 </dependency>
 ```
 ## 工具类介绍
-
 ### **FastJsonUtil(FastJson工具类)**
 借助FastJson实现序列化和反序列，同时自己实现了Json节点增删改，以及Json关键字段脱敏
 - **toJsonString(Object object)**, 序列化Json
@@ -74,6 +78,7 @@ Java开发常用工具类总结，如果对你有用欢迎点个start，此外�
 - **getLocalHostAddress()**，返回本机IP
 - **getLocalHostName()**，返回主机名
 - **getLocalInetAddress**，返回InetAddress
+
 ### **BigDecimalUtil(BigDecimal计算工具类)**
 在和钱打交道的服务里，经常会用到BigDecimal类，下面提供一些他的计算方法
 - **subtract(double x, double y)**
@@ -95,9 +100,49 @@ Java开发常用工具类总结，如果对你有用欢迎点个start，此外�
 各坐标系相互转换，如bd09，wgs84，gcj02
 - **convertLatLonByCoordinate(String newCoordinateType, String originalCoordinateType, double lat, double lon)**，将原本坐标系的经纬度转换成新的坐标系的经纬度，支持wgs84转bd09，bd09T转gcj02d等
 
+### **EncodeDecodeUtil(编码与解码工具类)**
+- **encodeWithMD5(String str)**， 对字符串进行MD5加密
+- **encodeWithSHA1(String str)**，对字符串进行SHA1加密
+- **encodeWithSHA256(String str)**，对字符串进行SHA-256加密
+- **encode(String algorithm, String str)**，通过指定算法对字符串加密
+- **encodeBase64(String str)**，对字符串进行Base64编码
+- **decodeBase64(String str)**，对字符串进行Base64解码
+- **encodeUrl(String str)**，对URL编码
+- **decodeUrl(String str)**，对URL解码
+
+
+### **ProtobufUtil(提供Protobuf格式的序列化和反序列)**
+- **<T> byte[] serialize(T obj)**，序列化对象
+- **<T> byte[] serializeList(List<T> objList)**，序列化数组
+- **<T> T unSerialize(byte[] data,Class<?> clazz)**，反序列化对象
+- **<T> List<T> unSerializeList(byte[] data, Class<T> clazz)**，反序列化数组
+
+### **DeepCopyUtil(深拷贝工具类)**
+- **Object depthClone(Object srcObj)**，单个对象的深拷贝，通过序列化与反序列的方式实现，所以srcObj对应的需实现java.io.Serializable接口
+- **<T> List<T> listDepthClone(List<T> list)**，多个对象的深拷贝，srcObj对应的需实现java.io.Serializable接口
+
+### **GZIPUtil(通过Gzip算法压缩和解压)**
+- **compress(String str)**，字符串压缩为GZIP字节数组
+- **compress(String str, String encoding)**，字符串压缩为GZIP字节数组
+- **uncompress(byte[] bytes)**，GZIP解压缩
+
+### **CaptchaUtil(验证码工具类)**
+
+- **String genCaptcha(int count)**，生成指定位数为count的随机验证码
+- **BufferedImage genCaptchaImg(String captcha)**，为一个验证码生成一个图片
+
+### **UrlParamsUtil（对URL参数处理的工具类）**
+
+- **String join(Map<String, String> map, String separator)**，将Map转成String, 可以指定分隔符，通常用于拼接URL后面的参数
+- **Map<String, String> split(String paramsPath, String separator)**，解析ulr参数为map
+-  **Map<String, String> split(String paramsPath)**，解析ulr参数为map，这里的separator参数为“=”
+-  **Map<String, String> build(String ... keyValues)**，将keyValues转成Map
+-  **add(Map<String, String> originMap, String ... keyValues)**，在原Map添加keyValues
+
 ### **EmailUtil(邮件发送工具类)**
+
 邮件工具类是通过JavaEmail实现，企业级项目一般都会专门的服务去发送邮件，但如果自己的小Demo，用工具类发送Email也未尝不可。示例Demo如下，有兴趣的可以fork代码自己研究一下，代码有详情的注释。
-```
+```java
 public class EmailUtilTest {
     @Before
     public void before() throws GeneralSecurityException {
@@ -112,15 +157,15 @@ public class EmailUtilTest {
 
 }
 ```
-### **ProtobufUtil(提供Protobuf格式的序列化和反序列)**
-### GZIPUtil(提供Gzip)
-- **compress(String str)**，字符串压缩为GZIP字节数组
-- **compress(String str, String encoding)**，字符串压缩为GZIP字节数组
-- **uncompress(byte[] bytes)**，GZIP解压缩
+
+## 关于开源
+
+本项目是开源项目，若有摘取本项目的代码，请注明出处！（码字不易，请遵重开源精神）
+
 
 ## Contributor
 
-下面是笔主收集的一些对本仓库提过有价值的pr或者issue的朋友，人数较多，如果你也对本仓库提过不错的pr或者issue的话，你可以加我的微信与我联系。下面的排名不分先后！
+下面是笔者收集的一些对本仓库提过有价值的pr或者issue的朋友，如果你也对本仓库提过不错的pr或者issue的话，你可以加我的微信与我联系。另外，请提下面的排名不分先后！
 
 <a href="https://github.com/LJWLgl">
     <img src="https://avatars1.githubusercontent.com/u/22522146?s=460&u=34378925405f18325ea493aa7df788410d6204e3&v=4" width="45px">
@@ -128,5 +173,15 @@ public class EmailUtilTest {
 <a href="https://github.com/fansengithub">
     <img src="https://avatars1.githubusercontent.com/u/16862948?s=400&v=4" width="45px">
 </a>
+
+**简单说明PR原则**
+
+- 注释需要完备，应该对新增的每个方法标注方法说明，同时对传入参数和返回参数也要相应的说明
+- 充分的Unit Test，保证每行代码和分支都要覆盖到
+- 代码规范，请遵循[阿里巴巴Java开发手册](https://yq.aliyun.com/articles/69327)
+
 ## 更新日志
-- 2020-05-22，新增LanguageUtil & 升级pom
+
+- 2018年8月，first commit
+- 2020年05月22日，新增LanguageUtil & 发布2.0.7版本
+- 2020年05月24日，新增EncodeDecodeUtil、CaptchaUtil & 发布2.0.8版本（审核中）

@@ -8,7 +8,7 @@ import java.util.Map;
  * @since 2019/1/22
  **/
 
-public class MapUtil {
+public class UrlParamsUtil {
 
     /**
      * 将Map转成String, 可以指定分隔符
@@ -87,7 +87,7 @@ public class MapUtil {
      * @param originMap origin Map
      * @param keyValues  keyValues
      */
-    public static void build(Map<String, String> originMap, String ... keyValues) {
+    public static void add(Map<String, String> originMap, String ... keyValues) {
         if (originMap == null || originMap.size() == 0) {
             return;
         }

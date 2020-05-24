@@ -1,4 +1,4 @@
-package io.github.ljwlgl.util;
+package com.ctrip.gs.globalcontentsearch.common;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,13 +113,13 @@ public class RegexUtils {
      */
     public static final String REGEX_NUMBER               = "[0-9]*";
     /**
-     * 正则：只有字母
-     */
-    public static final String REGEX_LETTER               = "^[A-Za-z]+$";
-    /**
      * 正则：字母、数字及下划线
      */
     public static final String REGEX_NUMBER_LETTER        = "^[0-9a-zA-Z-][\\w-_]{1,}$";
+    /**
+     * 正则：只有字母
+     */
+    public static final String REGEX_LETTER               = "^[A-Za-z]+$";
 
     private RegexUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
@@ -144,24 +144,6 @@ public class RegexUtils {
     }
 
     /**
-     * 验证是否是正浮点数
-     * @param input 待验证文本
-     * @return {@code true}: 匹配<br>{@code false}: 不匹配
-     */
-    public static boolean isNegativeFloat(CharSequence input) {
-        return isMatch(REGEX_NEGATIVE_FLOAT, input);
-    }
-
-    /**
-     * 验证是否只包含字母、数字及下划线
-     * @param input 待验证文本
-     * @return {@code true}: 匹配<br>{@code false}: 不匹配
-     */
-    public static boolean isLetterAndNum(CharSequence input) {
-        return isMatch(REGEX_NUMBER_LETTER, input);
-    }
-
-    /**
      * 验证是否只包含字母
      * @param input 待验证文本
      * @return {@code true}: 匹配<br>{@code false}: 不匹配
@@ -170,6 +152,9 @@ public class RegexUtils {
         return isMatch(REGEX_LETTER, input);
     }
 
+    public static boolean isLetterAndNum(CharSequence input) {
+        return isMatch(REGEX_NUMBER_LETTER, input);
+    }
 
     /**
      * If u want more please visit http://toutiao.com/i6231678548520731137/
@@ -289,15 +274,6 @@ public class RegexUtils {
     }
 
     /**
-     * 只保留汉字和字母
-     * @param input 待输入文本
-     * @return 只保留汉字和字母的字符串
-     */
-    public static String getOnlyZHAndLetterChar(String input) {
-        return input.replaceAll("[[^\u4E00-\u9FA5]&&[^a-zA-Z0-9]]", "");
-    }
-
-    /**
      * 判断是否匹配正则
      *
      * @param regex 正则表达式
@@ -362,6 +338,12 @@ public class RegexUtils {
     public static String getReplaceAll(String input, String regex, String replacement) {
         if (input == null) return null;
         return Pattern.compile(regex).matcher(input).replaceAll(replacement);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isPositiveFloat("-54859.5445"));
+        System.out.println(isLetterAndNum("d32sd_sdsddd6f738f4-62d2-653a-b55c-0ae49bdec7d2"));
+        System.out.println(isLetterAndNum("d32sd[sdsdd"));
     }
 
 }
