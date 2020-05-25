@@ -203,4 +203,4 @@ public class EmailUtilTest {
 
 - 2018年8月，first commit
 - 2020年05月22日，新增LanguageUtil & 发布2.0.7版本
-- 2020年05月24日，新增EncodeDecodeUtil、CaptchaUtil & 发布2.0.8版本（审核中）
+- 2020年05月24日，新增EncodeDecodeUtil、CaptchaUtil & 发布2.0.8版本
