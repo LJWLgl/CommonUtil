@@ -1,4 +1,4 @@
-package com.ctrip.gs.globalcontentsearch.common;
+package io.github.ljwlgl.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -340,10 +340,5 @@ public class RegexUtils {
         return Pattern.compile(regex).matcher(input).replaceAll(replacement);
     }
 
-    public static void main(String[] args) {
-        System.out.println(isPositiveFloat("-54859.5445"));
-        System.out.println(isLetterAndNum("d32sd_sdsddd6f738f4-62d2-653a-b55c-0ae49bdec7d2"));
-        System.out.println(isLetterAndNum("d32sd[sdsdd"));
-    }
 
 }
