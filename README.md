@@ -30,7 +30,7 @@
 <dependency>
       <groupId>io.github.ljwlgl</groupId>
       <artifactId>common-util</artifactId>
-      <version>2.0.7</version>
+      <version>2.0.8</version>
 </dependency>
 ```
 ## 工具类介绍
@@ -184,7 +184,7 @@ public class EmailUtilTest {
 
 ## Contributor
 
-下面是笔者收集的一些对本仓库提过有价值的pr或者issue的朋友，如果你也对本仓库提过不错的pr或者issue的话，你可以加我的微信与我联系。另外，请提下面的排名不分先后！
+下面是笔者收集的一些对本仓库提过有价值的pr或者issue的朋友，如果你也对本仓库提过不错的pr或者issue的话，你可以发邮件（2715815264@qq.com）与我联系。
 
 <a href="https://github.com/LJWLgl">
     <img src="https://avatars1.githubusercontent.com/u/22522146?s=460&u=34378925405f18325ea493aa7df788410d6204e3&v=4" width="45px">
@@ -203,4 +203,4 @@ public class EmailUtilTest {
 
 - 2018年8月，first commit
 - 2020年05月22日，新增LanguageUtil & 发布2.0.7版本
-- 2020年05月24日，新增EncodeDecodeUtil、CaptchaUtil & 发布2.0.8版本（审核中）
+- 2020年05月24日，新增EncodeDecodeUtil、CaptchaUtil & 发布2.0.8版本
