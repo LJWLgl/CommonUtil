@@ -35,6 +35,9 @@ public class DateUtil {
         return stringToDate(dateToShortDateString(c.getTime()));
     }
 
+    /**
+     * 比较两个时间是否是相同的天数
+     */
     public static boolean isSameDay(Date date1, Date date2) {
         if (calcIntervalDays(date1, date2) == 0) {
             return true;
@@ -43,12 +46,18 @@ public class DateUtil {
         }
     }
 
+    /**
+     * 将Date转成Calendar
+     */
     public static Calendar toCalendar(Date date) {
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         return c;
     }
 
+    /**
+     * 计算两个时间间隔的天数
+     */
     public static int calcIntervalDays(String dateStr1, String dateStr2) {
         return calcIntervalDays(stringToDate(dateStr1), stringToDate(dateStr2));
     }
@@ -154,6 +163,11 @@ public class DateUtil {
         }
     }
 
+    /**
+     * 将String转成Date，默认时区东八区，TimeZone.getTimeZone("Asia/Shanghai")
+     * @param dateStr 含格式的时间字符串串
+     * @return Date
+     */
     public static Date stringToDate(String dateStr) {
         SimpleDateFormat format = null;
         if (dateStr.contains("/")) {

@@ -9,6 +9,7 @@ package io.github.ljwlgl.util;
  **/
 
 public class CoordinateUtil {
+
     static double x_pi = 3.14159265358979324 * 3000.0 / 180.0;
     // π
     static double pi = 3.1415926535897932384626;

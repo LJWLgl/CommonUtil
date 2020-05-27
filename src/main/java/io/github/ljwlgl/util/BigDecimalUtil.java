@@ -12,8 +12,8 @@ import java.math.RoundingMode;
 public class BigDecimalUtil {
     
     public static double subtract(double x, double y) {
-        BigDecimal d1 = new BigDecimal(x);
-        BigDecimal d2 = new BigDecimal(y);
+        BigDecimal d1 = BigDecimal.valueOf(x);
+        BigDecimal d2 = BigDecimal.valueOf(y);
         return d1.subtract(d2).doubleValue();
     }
 
@@ -28,20 +28,20 @@ public class BigDecimalUtil {
     }
 
     public static double add(double x, double y) {
-        BigDecimal d1 = new BigDecimal(x);
-        BigDecimal d2 = new BigDecimal(y);
+        BigDecimal d1 = BigDecimal.valueOf(x);
+        BigDecimal d2 = BigDecimal.valueOf(y);
         return d1.add(d2).doubleValue();
     }
 
     public static double multiply(double x, double y) {
-        BigDecimal d1 = new BigDecimal(x);
-        BigDecimal d2 = new BigDecimal(y);
+        BigDecimal d1 = BigDecimal.valueOf(x);
+        BigDecimal d2 = BigDecimal.valueOf(y);
         return d1.multiply(d2).doubleValue();
     }
 
     public static double divide(double x, double y, int scale) {
-        BigDecimal d1 = new BigDecimal(x);
-        BigDecimal d2 = new BigDecimal(y);
+        BigDecimal d1 = BigDecimal.valueOf(x);
+        BigDecimal d2 = BigDecimal.valueOf(y);
         return d1.divide(d2, scale).doubleValue();
     }
 
@@ -50,7 +50,7 @@ public class BigDecimalUtil {
     }
 
     public static double roundUp(double val, int scale) {
-        BigDecimal dec = new BigDecimal(val);
+        BigDecimal dec = BigDecimal.valueOf(val);
         return dec.setScale(scale, RoundingMode.UP).doubleValue();
     }
 
@@ -59,7 +59,7 @@ public class BigDecimalUtil {
     }
 
     public static double roundDown(double val, int scale) {
-        BigDecimal dec = new BigDecimal(val);
+        BigDecimal dec = BigDecimal.valueOf(val);
         return dec.setScale(scale, RoundingMode.DOWN).doubleValue();
     }
 
@@ -68,7 +68,7 @@ public class BigDecimalUtil {
     }
 
     public static double roundHalfUp(double val, int scale) {
-        BigDecimal dec = new BigDecimal(val);
+        BigDecimal dec = BigDecimal.valueOf(val);
         return dec.setScale(scale, BigDecimal.ROUND_HALF_UP).doubleValue();
     }
 
