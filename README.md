@@ -30,7 +30,7 @@
 <dependency>
       <groupId>io.github.ljwlgl</groupId>
       <artifactId>common-util</artifactId>
-      <version>2.0.8</version>
+      <version>2.0.9</version>
 </dependency>
 ```
 ## 工具类介绍
@@ -200,7 +200,15 @@ public class EmailUtilTest {
 - 代码规范，请遵循[阿里巴巴Java开发手册](https://yq.aliyun.com/articles/69327)
 
 ## 更新日志
-
-- 2018年8月，first commit
-- 2020年05月22日，新增LanguageUtil & 发布2.0.7版本
-- 2020年05月24日，新增EncodeDecodeUtil、CaptchaUtil & 发布2.0.8版本
+- 2018年08月
+	- 创建项目
+- 2020年05月22日
+	- 新增LanguageUtil 
+	-  发布2.0.7版本
+- 2020年05月24日
+	- 新增EncodeDecodeUtil、CaptchaUtil
+	-  发布2.0.8版本
+- 2020年05月27日
+	- 修复BigDecimalUtil错误的构造方法
+	- 补充一些method的注释
+	- 发布2.0.9版本	 	
