@@ -1,9 +1,6 @@
 package io.github.ljwlgl.util;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.JSONPath;
+import com.alibaba.fastjson.*;
 import com.alibaba.fastjson.serializer.PropertyFilter;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -26,6 +23,7 @@ public class FastJsonUtil {
 
     /**
      * 序列化Json，remove schema 属性
+     *
      * @param object
      * @return
      */
@@ -35,13 +33,14 @@ public class FastJsonUtil {
 
     /**
      * 序列化Json时删除不必要的属性
+     *
      * @param object
      * @param reAttrs
      * @return String
      */
     public static String toJsonString(Object object, String... reAttrs) {
         List<String> reAttrList = Arrays.stream(reAttrs).filter(Objects::nonNull).collect(Collectors.toList());
-        PropertyFilter filter = (obj, name, value) -> ! reAttrList.contains(name);
+        PropertyFilter filter = (obj, name, value) -> !reAttrList.contains(name);
         return JSON.toJSONString(object, filter);
     }
 
@@ -53,8 +52,9 @@ public class FastJsonUtil {
     /**
      * 根据path向json加入指定对象
      * 注意：只支持JSONObject类型
-     * @param json 原json串
-     * @param path 需要添加的路径
+     *
+     * @param json  原json串
+     * @param path  需要添加的路径
      * @param value 添加的对象
      * @return 新json串
      */
@@ -79,6 +79,7 @@ public class FastJsonUtil {
 
     /**
      * 根据path删除指定属性
+     *
      * @param json 原json串
      * @param path 需要删除的json路径
      * @return 新的json串
@@ -104,6 +105,7 @@ public class FastJsonUtil {
 
     /**
      * 根据path替换指定属性, 只支持JSONObject
+     *
      * @param json 原json串
      * @param path 需要替换的json路径
      * @return 新的json串
@@ -129,6 +131,7 @@ public class FastJsonUtil {
 
     /**
      * 根据path替换指定属性, 支持JSONArray，但是不支持路径表达式
+     *
      * @param json 原json串
      * @param path 需要替换的json路径
      * @return 新的json串
@@ -149,7 +152,7 @@ public class FastJsonUtil {
         if (CollectionUtils.isEmpty(res)) {
             return json;
         }
-        for (int j=0; j < res.size(); j++) {
+        for (int j = 0; j < res.size(); j++) {
             Object oldValue = res.get(j).get(keys[keys.length - 1]);
             if (oldValue == null) {
                 continue;
@@ -171,7 +174,7 @@ public class FastJsonUtil {
 
     // 支持JSONArray
     private static void getJSONObjectByKeys(List<JSONObject> res, Object object, String[] keys, int index) {
-        if (object == null || index >= keys.length ) {
+        if (object == null || index >= keys.length) {
             return;
         }
         if (object instanceof JSONArray) {
@@ -216,8 +219,9 @@ public class FastJsonUtil {
 
     /**
      * 加密json，支持JsonArray
+     *
      * @param preObject 原json串
-     * @param paths 需要加密的json路径
+     * @param paths     需要加密的json路径
      * @return 新的json串
      */
     private static String encryptToJson(JSONObject preObject, String[] paths) {
@@ -240,7 +244,7 @@ public class FastJsonUtil {
             if (CollectionUtils.isEmpty(res)) {
                 continue;
             }
-            for (int j=0; j < res.size(); j++) {
+            for (int j = 0; j < res.size(); j++) {
                 Object oldValue = res.get(j).get(keys[keys.length - 1]);
                 if (oldValue == null) {
                     continue;
@@ -260,7 +264,7 @@ public class FastJsonUtil {
         int midIdx = text.length() / 2;
         char[] arr = text.toCharArray();
         arr[midIdx] = '*';
-        for (int i = 1,p = 1, k = 1; i < passLength; i++) {
+        for (int i = 1, p = 1, k = 1; i < passLength; i++) {
             if (i % 2 == 0) {
                 arr[midIdx + p] = '*';
                 p++;
@@ -274,13 +278,14 @@ public class FastJsonUtil {
 
     /**
      * 根据path取出结果
+     *
      * @param json
      * @param path
      * @return String
      */
     public static Object eval(String json, String path) {
         try {
-            if (! json.contains("{") || ! json.contains("}")) {
+            if (!json.contains("{") || !json.contains("}")) {
                 return null;
             }
             JSONObject jsonObject = JSON.parseObject(json);
@@ -300,16 +305,17 @@ public class FastJsonUtil {
 
     /**
      * 根据path从json中取出结果并反序列成JavaBean
+     *
      * @param json json字符串
      * @param path 需要的json路径
-     * @param clz class
-     * @param <T> 具体类型
+     * @param clz  class
+     * @param <T>  具体类型
      * @return res
      */
     @SuppressWarnings("unchecked")
     public static <T> T eval(String json, String path, Class<T> clz) {
         Object obj = eval(json, path);
-        if (obj  == null) {
+        if (obj == null) {
             return null;
         }
         return instanceOf(obj, clz);
@@ -317,7 +323,7 @@ public class FastJsonUtil {
 
     public static <T> T eval(JSONObject jsonObject, String path, Class<T> clz) {
         Object obj = eval(jsonObject, path);
-        if (obj  == null) {
+        if (obj == null) {
             return null;
         }
         return instanceOf(obj, clz);
@@ -363,15 +369,16 @@ public class FastJsonUtil {
 
     /**
      * 根据path从json中取出结果并反序列成JavaBean，该方法只支持array
+     *
      * @param json json字符串
      * @param path 需要的json路径
-     * @param clz class
-     * @param <T> 具体类型
+     * @param clz  class
+     * @param <T>  具体类型
      * @return res
      */
     public static <T> List<T> evals(String json, String path, Class<T> clz) {
         Object obj = eval(json, path);
-        if (obj  == null) {
+        if (obj == null) {
             return null;
         }
         if (obj instanceof JSONArray) {
@@ -429,8 +436,9 @@ public class FastJsonUtil {
 
     /**
      * 判断Json是否包含keys属性
+     *
      * @param jsonStr json
-     * @param keys 属性的可变长参数
+     * @param keys    属性的可变长参数
      * @return boolean
      */
     public static boolean containsKey(String jsonStr, String... keys) {
@@ -447,12 +455,11 @@ public class FastJsonUtil {
         }
         try {
             for (int i = 0; i < keys.length; i++) {
-                if (! jsonObject.containsKey(keys[i])) {
+                if (!jsonObject.containsKey(keys[i])) {
                     return false;
                 }
             }
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             return false;
         }
         return true;
@@ -460,16 +467,23 @@ public class FastJsonUtil {
 
     /**
      * 判断是否是Json串
+     *
      * @param str 检测字符串
      * @return bool
      */
     public static boolean isJSON(String str) {
-        boolean result = false;
+
+        if (StringUtils.isBlank(str)) {
+            return false;
+        }
+
+        boolean result;
+
         try {
-            Object obj=JSON.parseObject(str);
+            JSON.parse(str);
             result = true;
-        } catch (Exception e) {
-            result=false;
+        } catch (JSONException e) {
+            result = false;
         }
         return result;
     }
