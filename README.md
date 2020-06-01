@@ -195,7 +195,9 @@ public class EmailUtilTest {
 <a href="https://github.com/927376346">
     <img src="https://avatars2.githubusercontent.com/u/34704332?s=400&v=4" width="45px">
 </a>
-
+<a href="https://github.com/drinkagain">
+    <img src="https://avatars2.githubusercontent.com/u/29560256?s=400&u=03abc1be6f633c0afbbfc07ec9bdeb9fd3e86a09&v=4" width="45px">
+</a>
 **简单说明PR原则**
 
 - 注释需要完备，应该对新增的每个方法标注方法说明，同时对传入参数和返回参数也要相应的说明
