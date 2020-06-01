@@ -211,4 +211,6 @@ public class EmailUtilTest {
 - 2020年05月27日
 	- 修复BigDecimalUtil错误的构造方法
 	- 补充一些method的注释
-	- 发布2.0.9版本	 	
+	- 发布2.0.9版本
+- 2020年06月01日
+	- 补充单元测试	 	
