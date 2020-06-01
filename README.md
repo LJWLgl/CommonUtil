@@ -4,6 +4,7 @@
 - [工具类介绍](#工具类介绍)
     - [FastJsonUtil(FastJson工具类)](#fastjsonutilfastjson工具类)
     - [DateUtil(时间转换工具类)](#dateutil时间转换工具类)
+    - [CsvUtil(CSV文件工具类)](#csvutil处理csv文件的工具类)
     - [RegexUtil(正则工具类)](#regexutil正则工具类)
     - [LanguageUtil(语言工具类)](#languageutil语言工具类)
     - [NetworkUtil(获取本地IP和主机名工具类)](#networkutil获取本地ip和主机名工具类)
@@ -23,7 +24,7 @@
 
 ## 概述
 
-本仓库是Java开发常用工具类的总结，如果对你有用欢迎点个start，此外，如果你有兴趣和我一起维护该仓库，欢迎提PR或者issue，让我们为拥有一个更强大的工具库而一同努力。
+本仓库是Java开发常用工具类的总结，旨在追求给大家提供一个轻便简单的工具类库，同时能够cover住大家80%以上的工具类的需求。如果对你有用欢迎点个start，此外，如果你有兴趣和我一起维护该仓库，欢迎提PR或者issue，让我们为拥有一个更强大的工具库而一同努力。
 
 ## 导入项目
 ```
@@ -72,6 +73,13 @@
     - 昨天：昨天 + 小时分钟（昨天 08:30）
     - 昨天之前并在当年内：某月某日 + 小时分钟（1月1日 08:30）
     - 隔年：某年某月某日 + 小时分钟（2017年1月1日 08:30）
+
+### **CsvUtil(CSV文件工具类)**
+csv作为开发常常需要处理的文件格式，本项目主要提供以下工具方法：
+- **List<String[]> read(String filePath, String code, boolean needHeader)**，读取CSV文件，（参数说明，needHeader：是否需要列标题;）
+- **List<String[]> read(InputStream inputStream, Charset charset, boolean needHeader, int[] columns)**，读取CSV文件，（参数说明，needHeader：是否需要列标题；columns： 指定读取csv文件的哪几列，如果为null，则读取全部列）
+- **List<String[]> read(...)**，读取CSV文件的多个重载方法
+- **write(List<String[]> list, String filePath, boolean append)**，写入CSV文件（参数说明，append：是否以追加的方式写入）
 
 ### **RegexUtil(正则工具类)**
 - **isMobileExact(CharSequence input)**，是否是手机号
@@ -128,7 +136,6 @@
 - **decodeBase64(String str)**，对字符串进行Base64解码
 - **encodeUrl(String str)**，对URL编码
 - **decodeUrl(String str)**，对URL解码
-
 
 ### **ProtobufUtil(提供Protobuf格式的序列化和反序列)**
 - **<T> byte[] serialize(T obj)**，序列化对象
@@ -209,15 +216,13 @@ public class EmailUtilTest {
 ## 更新日志
 - 2018年08月
 	- 创建项目
-- 2020年05月22日
-	- 新增LanguageUtil 
-	-  发布2.0.7版本
-- 2020年05月24日
-	- 新增EncodeDecodeUtil、CaptchaUtil
-	-  发布2.0.8版本
-- 2020年05月27日
-	- 修复BigDecimalUtil错误的构造方法
-	- 补充一些method的注释
-	- 发布2.0.9版本
-- 2020年06月01日
-	- 补充单元测试	 	
+- 2020年05月
+	- 新增LanguageUtil、EncodeDecodeUtil、CaptchaUtil
+	- 发布2.0.7、2.0.8、2.0.9版本
+    - 修复BigDecimalUtil错误的构造方法
+    - 补充一些method的注释
+- 2020年06月
+    - 发布2.1.0版本
+    - 新增CsvUtil
+    - 补充单元测试	
+	 	

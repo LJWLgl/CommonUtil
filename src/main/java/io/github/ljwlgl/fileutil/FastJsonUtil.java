@@ -1,4 +1,4 @@
-package io.github.ljwlgl.util;
+package io.github.ljwlgl.fileutil;
 
 import com.alibaba.fastjson.*;
 import com.alibaba.fastjson.serializer.PropertyFilter;
