@@ -1,18 +1,32 @@
 package io.github.ljwlgl.util;
 
-import io.github.ljwlgl.util.NetworkUtil;
 import org.junit.Test;
+
+import java.net.InetAddress;
+
+import static org.junit.Assert.assertEquals;
 
 public class NetworkUtilTest {
 
+    @Test
+    public void testGetLocalInetAddress() throws Exception {
+        // Setup
+        final InetAddress expectedResult = InetAddress.getByName("host");
 
-  @Test
-  public void getLocalHostAddress() throws Exception {
-    System.out.println(NetworkUtil.getLocalHostAddress());
-  }
+        // Run the test
+        final InetAddress result = NetworkUtil.getLocalInetAddress();
 
-  @Test
-  public void getLocalHostName() throws Exception {
-    System.out.println(NetworkUtil.getLocalHostName());
-  }
+        // Verify the results
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetLocalHostAddress() {
+        assertEquals("result", NetworkUtil.getLocalHostAddress());
+    }
+
+    @Test
+    public void testGetLocalHostName() {
+        assertEquals("result", NetworkUtil.getLocalHostName());
+    }
 }

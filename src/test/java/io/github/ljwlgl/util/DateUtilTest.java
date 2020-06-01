@@ -1,45 +1,95 @@
 package io.github.ljwlgl.util;
 
-import io.github.ljwlgl.util.DateUtil;
 import org.junit.Test;
 
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class DateUtilTest {
 
     @Test
-    public void testStringToDate() {
-//        Date date = DateUtil.stringToDate("2018-09-02 08:00:00");
-//        Date date = DateUtil.stringToDate("2018/09/02 08:00:00");
-        Date date = DateUtil.stringToDate("2018/09/02");
-        System.out.println(date);
+    public void testGetCurrentDate() {
+        assertEquals(new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime(), DateUtil.getCurrentDate());
     }
 
     @Test
-    public void test03() {
-//        Date oldTime = DateUtil.getIntervalHour(new Date(), -3);
-//        System.out.println(oldTime);
+    public void testIsSameDay() {
+        assertTrue(DateUtil.isSameDay(new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime(), new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime()));
+    }
+
+    @Test
+    public void testToCalendar() {
+        // Setup
+        final Calendar expectedResult = Calendar.getInstance(Locale.US);
+
+        // Run the test
+        final Calendar result = DateUtil.toCalendar(new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime());
+
+        // Verify the results
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testCalcIntervalDays() {
+        assertEquals(0, DateUtil.calcIntervalDays("dateStr1", "dateStr2"));
+    }
+
+    @Test
+    public void testCalcIntervalOurs() {
+        assertEquals(0, DateUtil.calcIntervalOurs(new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime(), new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime()));
+    }
+
+    @Test
+    public void testCalcIntervalMinutes() {
+        assertEquals(0, DateUtil.calcIntervalMinutes(new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime(), new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime()));
+    }
+
+    @Test
+    public void testCalcIntervalDays1() {
+        assertEquals(0, DateUtil.calcIntervalDays(new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime(), new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime()));
+    }
+
+    @Test
+    public void testDayOfWeek() {
+        assertEquals(0, DateUtil.dayOfWeek(new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime()));
+    }
+
+    @Test
+    public void testGetTodayMinutes() {
+        assertEquals(0, DateUtil.getTodayMinutes());
+    }
+
+    @Test
+    public void testGetIntervalDaysDate() {
+        assertEquals(new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime(), DateUtil.getIntervalDaysDate(new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime(), 0));
+    }
+
+    @Test
+    public void testGetIntervalHourDate() {
+        assertEquals(new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime(), DateUtil.getIntervalHourDate(new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime(), 0));
+    }
+
+    @Test
+    public void testDateToShortDateString() {
+        assertEquals("result", DateUtil.dateToShortDateString(new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime()));
+    }
+
+    @Test
+    public void testDateToString() {
+        assertEquals("result", DateUtil.dateToString(new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime(), "format"));
+    }
+
+    @Test
+    public void testStringToDate() {
+        assertEquals(new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime(), DateUtil.stringToDate("dateStr"));
     }
 
     @Test
     public void testDateToVoString() {
-        Date date = DateUtil.stringToDate("2018年5月2日");
-        System.out.println(DateUtil.dateToVoString(date));
-
-        date.setTime(new Date().getTime() - 12 * 60 * 60 * 1000);
-        System.out.println(DateUtil.dateToVoString(date));
-
-        date.setTime(new Date().getTime() - 6 * 1000);
-        System.out.println(DateUtil.dateToVoString(date));
+        assertEquals("result", DateUtil.dateToVoString(new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime()));
     }
-
-    @Test
-    public void test09() {
-        Date date1 = new Date();
-        date1.setTime(new Date().getTime() - 1);
-        Date date2 = new Date();
-        date2.setTime(new Date().getTime() - 12 * 60 * 60 * 1000);
-        System.out.println(DateUtil.calcIntervalOurs(date1, date2));
-    }
-
 }

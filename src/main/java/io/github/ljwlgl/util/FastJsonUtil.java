@@ -323,7 +323,7 @@ public class FastJsonUtil {
         return instanceOf(obj, clz);
     }
 
-    public static <T> T instanceOf(Object obj, Class<T> clz) {
+    private static <T> T instanceOf(Object obj, Class<T> clz) {
         if (obj instanceof String) {
             return valueOf(obj, clz);
         } else if (obj instanceof Integer) {
@@ -341,7 +341,7 @@ public class FastJsonUtil {
         }
     }
 
-    public static <T> T valueOf(Object obj, Class<T> clz) {
+    private static <T> T valueOf(Object obj, Class<T> clz) {
         if (clz.equals(Long.class)) {
             return (T) Long.valueOf(obj.toString());
         } else if (clz.equals(Integer.class)) {

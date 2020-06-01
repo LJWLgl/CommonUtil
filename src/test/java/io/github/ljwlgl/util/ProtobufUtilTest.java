@@ -1,51 +1,95 @@
 package io.github.ljwlgl.util;
 
-import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ProtobufUtilTest {
+
     @Test
-    public void serialize() throws Exception {
-        List<UserInfo> users = new ArrayList<>();
-        for (int i=0; i < 10000; i++) {
-            UserInfo user = new UserInfo();
-            user.setUid(i + 1);
-            user.setUserName("nx");
-            users.add(user);
+    public void testSerialize() {
+        // Setup
+//        final T obj = null;
+
+        // Run the test
+//        final byte[] result = ProtobufUtil.serialize(obj);
+
+        // Verify the results
+//        assertArrayEquals("content".getBytes(), result);
+    }
+
+    @Test
+    public void testSerializeList() {
+        // Setup
+//        final List<T> objList = Arrays.asList();
+
+        // Run the test
+//        final byte[] result = ProtobufUtil.serializeList(objList);
+
+        // Verify the results
+//        assertArrayEquals("content".getBytes(), result);
+    }
+
+    @Test
+    public void testUnSerialize() {
+        // Setup
+
+        // Run the test
+//        final T result = ProtobufUtil.unSerialize("content".getBytes(), Object.class);
+
+        // Verify the results
+    }
+
+    @Test
+    public void testUnSerializeSet() {
+        // Setup
+
+        // Run the test
+//        final Set<T> result = ProtobufUtil.unSerializeSet("content".getBytes(), Object.class);
+
+        // Verify the results
+    }
+
+    @Test
+    public void testUnSerializeList() {
+        // Setup
+
+        // Run the test
+//        final List<T> result = ProtobufUtil.unSerializeList("content".getBytes(), Object.class);
+
+        // Verify the results
+    }
+
+    @Test
+    public void testIsNullOrEmpty() {
+        assertTrue(ProtobufUtil.isNullOrEmpty("obj"));
+    }
+
+
+    class UserInfo {
+
+        private String userName;
+        private Integer uid;
+
+        public String getUserName() {
+            return userName;
         }
-        byte[] bytes = ProtobufUtil.serializeList(users);
-        System.out.println("普通序列化" + FastJsonUtil.toJsonString(users).getBytes().length);
-        System.out.println("protobuf序列化："+ bytes.length);
-        List<UserInfo> userInfos = ProtobufUtil.unSerializeList(bytes, UserInfo.class);
-        System.out.println(userInfos.size());
-    }
 
-}
+        public void setUserName(String userName) {
+            this.userName = userName;
+        }
 
-class UserInfo {
+        public Integer getUid() {
+            return uid;
+        }
 
-    private String userName;
-    private Integer uid;
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public Integer getUid() {
-        return uid;
-    }
-
-    public void setUid(Integer uid) {
-        this.uid = uid;
+        public void setUid(Integer uid) {
+            this.uid = uid;
+        }
     }
 }
