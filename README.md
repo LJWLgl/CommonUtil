@@ -4,7 +4,7 @@
 - [工具类介绍](#工具类介绍)
     - [FastJsonUtil(FastJson工具类)](#fastjsonutilfastjson工具类)
     - [DateUtil(时间转换工具类)](#dateutil时间转换工具类)
-    - [CsvUtil(CSV文件工具类)](#csvutil处理csv文件的工具类)
+    - [CsvUtil(CSV文件工具类)](#csvutilcsv文件工具类)
     - [RegexUtil(正则工具类)](#regexutil正则工具类)
     - [LanguageUtil(语言工具类)](#languageutil语言工具类)
     - [NetworkUtil(获取本地IP和主机名工具类)](#networkutil获取本地ip和主机名工具类)
