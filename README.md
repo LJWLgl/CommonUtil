@@ -192,6 +192,9 @@ public class EmailUtilTest {
 <a href="https://github.com/fansengithub">
     <img src="https://avatars1.githubusercontent.com/u/16862948?s=400&v=4" width="45px">
 </a>
+<a href="https://github.com/927376346">
+    <img src="https://avatars2.githubusercontent.com/u/34704332?s=400&v=4" width="45px">
+</a>
 
 **简单说明PR原则**
 
