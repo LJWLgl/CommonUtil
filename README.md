@@ -31,7 +31,7 @@
 <dependency>
       <groupId>io.github.ljwlgl</groupId>
       <artifactId>common-util</artifactId>
-      <version>2.0.9</version>
+      <version>2.1.0</version>
 </dependency>
 ```
 ## 工具类介绍
