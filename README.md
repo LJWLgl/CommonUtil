@@ -24,14 +24,14 @@
 
 ## 概述
 
-本仓库是Java开发常用工具类的总结，旨在追求给大家提供一个轻便简单的工具类库，同时能够cover住大家80%以上的工具类的需求。如果对你有用欢迎点个start，此外，如果你有兴趣和我一起维护该仓库，欢迎提PR或者issue，让我们为拥有一个更强大的工具库而一同努力。
+本仓库是Java开发常用工具类的总结，旨在追求给大家提供一个轻便简单的工具类库，同时能够cover住大家80%以上的工具类的需求。如果对你有用欢迎点个star，此外，如果你有兴趣和我一起维护该仓库，欢迎提PR或者issue，让我们为拥有一个更强大的工具库而一同努力。
 
 ## 导入项目
 ```
 <dependency>
       <groupId>io.github.ljwlgl</groupId>
       <artifactId>common-util</artifactId>
-      <version>2.0.9</version>
+      <version>2.1.0</version>
 </dependency>
 ```
 ## 工具类介绍
