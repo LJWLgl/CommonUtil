@@ -24,6 +24,18 @@
         </developer>
     </developers>
 
+    <properties>
+        <fastjson.version>1.2.68</fastjson.version>
+        <junit.version>4.12</junit.version>
+        <common-collection.version>3.2.2</common-collection.version>
+        <jackson.version>2.8.5</jackson.version>
+        <protostuff.version>1.0.12</protostuff.version>
+        <csv.version>2.0</csv.version>
+        <commons-lang3.version>3.6</commons-lang3.version>
+        <javax-mail.version>1.6.0</javax-mail.version>
+        <httpmime.version>4.4.1</httpmime.version>
+    </properties>
+
     <scm>
         <connection>scm:git@github.com:LJWLgl/CommonUtil.git</connection>
         <developerConnection>scm:git@github.com:LJWLgl/CommonUtil.git</developerConnection>
@@ -47,7 +59,7 @@
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
-            <version>1.6.0</version>
+            <version>${javax-mail.version}</version>
         </dependency>
         <dependency>
             <groupId>com.mitchellbosecke</groupId>
@@ -60,62 +72,69 @@
             <artifactId>jetbrick-template</artifactId>
             <version>2.1.2</version>
             <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <!-- http相关 -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpmime</artifactId>
-            <version>4.4.1</version>
+            <version>${httpmime.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
-            <version>3.2.2</version>
+            <version>${common-collection.version}</version>
         </dependency>
         <!-- json相关 -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.46</version>
+            <version>${fastjson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>2.8.5</version>
+            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>2.8.5</version>
+            <version>${jackson.version}</version>
         </dependency>
         <!-- json end -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.6</version>
+            <version>${commons-lang3.version}</version>
         </dependency>
         <!-- protobuf begin -->
         <dependency>
             <groupId>com.dyuproject.protostuff</groupId>
             <artifactId>protostuff-core</artifactId>
-            <version>1.0.12</version>
+            <version>${protostuff.version}</version>
         </dependency>
         <dependency>
             <groupId>com.dyuproject.protostuff</groupId>
             <artifactId>protostuff-runtime</artifactId>
-            <version>1.0.12</version>
+            <version>${protostuff.version}</version>
         </dependency>
         <!-- protobuf end -->
+        <!--- csv -->
         <dependency>
             <groupId>net.sourceforge.javacsv</groupId>
             <artifactId>javacsv</artifactId>
-            <version>2.0</version>
+            <version>${csv.version}</version>
         </dependency>
     </dependencies>
 

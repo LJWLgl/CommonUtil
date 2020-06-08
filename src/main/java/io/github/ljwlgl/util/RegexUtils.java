@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 /**
  * @author zqgan
  * @since 2019/4/8
+ * 本工具类的部分代码参考：https://www.jianshu.com/p/583998f435d0
  **/
 
 public class RegexUtils {
@@ -120,6 +121,11 @@ public class RegexUtils {
      * 正则：只有字母
      */
     public static final String REGEX_LETTER               = "^[A-Za-z]+$";
+
+    /**
+     * 正则：是否包含括号
+     */
+    public static final String REGEX_BRACKETS             = ".*[()\\[\\]{}（）]+.*";
 
     private RegexUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
@@ -274,6 +280,15 @@ public class RegexUtils {
     }
 
     /**
+     * 是否包含括号
+     * @param input 待验证文本
+     * @return {@code true}: 匹配<br>{@code false}: 不匹配
+     */
+    public static boolean haveBrackets(CharSequence input) {
+        return isMatch(REGEX_BRACKETS, input);
+    }
+
+    /**
      * 判断是否匹配正则
      *
      * @param regex 正则表达式
@@ -338,6 +353,15 @@ public class RegexUtils {
     public static String getReplaceAll(String input, String regex, String replacement) {
         if (input == null) return null;
         return Pattern.compile(regex).matcher(input).replaceAll(replacement);
+    }
+
+    /**
+     * 移除括号及所有的括号内的的内容
+     * @param input       输入字符串
+     * @return            输出字符串
+     */
+    public static String removeContentInBrackets(String input) {
+        return input.replaceAll("\\(.*?\\)|\\{.*?}|\\[.*?]|（.*?）", "");
     }
 
 

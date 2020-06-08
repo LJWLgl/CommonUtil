@@ -11,6 +11,13 @@ public class LanguageUtil {
 
 
     /**
+     * 是否只有数字
+     */
+    public static boolean isNumeric(String str) {
+        return str != null && str.length() > 0 && Pattern.matches("[0-9]*", str);
+    }
+
+    /**
      * 是否只有字母
      */
     public static boolean isOnlyLetter(String str) {
