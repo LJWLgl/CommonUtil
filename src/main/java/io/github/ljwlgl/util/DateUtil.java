@@ -66,7 +66,7 @@ public class DateUtil {
      * 计算两个时间的间隔小时，只会整除
      */
     public static int calcIntervalOurs(Date date1, Date date2) {
-        if (date2.after(date1))  {
+        if (date2.after(date1)) {
             return Long.valueOf((date2.getTime() - date1.getTime()) / (1000 * 60 * 60)).intValue();
         } else if (date2.before(date1)) {
             return Long.valueOf((date1.getTime() - date2.getTime()) / (1000 * 60 * 60)).intValue();
@@ -79,7 +79,7 @@ public class DateUtil {
      * 计算两个时间的间隔小时，只会整除
      */
     public static int calcIntervalMinutes(Date date1, Date date2) {
-        if (date2.after(date1))  {
+        if (date2.after(date1)) {
             return Long.valueOf((date2.getTime() - date1.getTime()) / (1000 * 60)).intValue();
         } else if (date2.before(date1)) {
             return Long.valueOf((date1.getTime() - date2.getTime()) / (1000 * 60)).intValue();
@@ -92,7 +92,7 @@ public class DateUtil {
      * 计算两个时间的间隔天数
      */
     public static int calcIntervalDays(Date date1, Date date2) {
-        if (date2.after(date1))  {
+        if (date2.after(date1)) {
             return Long.valueOf((date2.getTime() - date1.getTime()) / (1000 * 60 * 60 * 24)).intValue();
         } else if (date2.before(date1)) {
             return Long.valueOf((date1.getTime() - date2.getTime()) / (1000 * 60 * 60 * 24)).intValue();
@@ -108,12 +108,12 @@ public class DateUtil {
         Calendar ca = Calendar.getInstance();
         ca.setTime(date);
         int dayofWeek;
-        if (ca.get(Calendar.DAY_OF_WEEK) == 1 ){
-            dayofWeek = 7 ;
+        if (ca.get(Calendar.DAY_OF_WEEK) == 1) {
+            dayofWeek = 7;
         } else {
-            dayofWeek = ca.get(Calendar.DAY_OF_WEEK) - 1 ;
+            dayofWeek = ca.get(Calendar.DAY_OF_WEEK) - 1;
         }
-        return  dayofWeek;
+        return dayofWeek;
     }
 
     /**
@@ -165,6 +165,7 @@ public class DateUtil {
 
     /**
      * 将String转成Date，默认时区东八区，TimeZone.getTimeZone("Asia/Shanghai")
+     *
      * @param dateStr 含格式的时间字符串串
      * @return Date
      */
@@ -184,7 +185,7 @@ public class DateUtil {
             }
         } else if (dateStr.contains("年") && dateStr.contains("月") && dateStr.contains("日")) {
             format = new SimpleDateFormat(YYYYMMDD_CHINESE);
-        } else  if(! dateStr.contains("年") && dateStr.contains("月") && dateStr.contains("日")) {
+        } else if (!dateStr.contains("年") && dateStr.contains("月") && dateStr.contains("日")) {
             format = new SimpleDateFormat(MMDD_CHINESE);
         }
         if (format == null) {
@@ -202,11 +203,11 @@ public class DateUtil {
     /**
      * 全站时间展示规范
      * 1分钟内：刚刚
-     超过1分钟并在1小时内：某分钟前 （1分钟前）
-     超过1小时并在当日内：某小时前（1小时前）
-     昨天：昨天 + 小时分钟（昨天 08:30）
-     昨天之前并在当年内：某月某日 + 小时分钟（1月1日 08:30）
-     隔年：某年某月某日 + 小时分钟（2015年1月1日 08:30）
+     * 超过1分钟并在1小时内：某分钟前 （1分钟前）
+     * 超过1小时并在当日内：某小时前（1小时前）
+     * 昨天：昨天 + 小时分钟（昨天 08:30）
+     * 昨天之前并在当年内：某月某日 + 小时分钟（1月1日 08:30）
+     * 隔年：某年某月某日 + 小时分钟（2015年1月1日 08:30）
      */
     public static String dateToVoString(Date date) {
         Date now = new Date();
@@ -239,6 +240,85 @@ public class DateUtil {
                     dateCalendar.get(Calendar.DAY_OF_MONTH), dateCalendar.get(Calendar.HOUR_OF_DAY),
                     dateCalendar.get(Calendar.MINUTE));
         }
+    }
+
+    /**
+     * 获取指定日期百分百
+     *
+     * @param date
+     * @return
+     */
+    public static Float getPercentage(Date date) {
+        if (date == null) date = new Date();
+        Integer day = getDay(date);
+        Integer month = getMonth(date);
+        Integer year = getYear(date);
+        Integer monthDays = getMonthLastDay(year, month);
+        return (float) day / (float) monthDays;
+    }
+
+    /**
+     * 获取年份
+     *
+     * @param date
+     * @return
+     */
+    public static int getYear(Date date) {
+        if (date == null) date = new Date();
+        String year = new SimpleDateFormat("yyyy").format(date);
+        return Integer.parseInt(year);
+    }
+
+    /**
+     * 获取月份
+     *
+     * @param date
+     * @return
+     */
+    public static int getMonth(Date date) {
+        String month = new SimpleDateFormat("MM").format(date);
+        return Integer.parseInt(month);
+    }
+
+    /**
+     * 获取日期
+     *
+     * @param date
+     * @return
+     */
+    public static int getDay(Date date) {
+        String day = new SimpleDateFormat("dd").format(date);
+        return Integer.parseInt(day);
+    }
+
+    /**
+     * 获取某月的最后一天
+     *
+     * @param year
+     * @param month
+     * @return
+     */
+    public static int getMonthLastDay(int year, int month) {
+        Calendar a = Calendar.getInstance();
+        a.set(Calendar.YEAR, year);
+        a.set(Calendar.MONTH, month - 1);
+        a.set(Calendar.DATE, 1);//把日期设置为当月第一天
+        a.roll(Calendar.DATE, -1);//日期回滚一天，也就是最后一天
+        int maxDate = a.get(Calendar.DATE);
+        return maxDate;
+    }
+
+    /**
+     * 判断是否是闰年
+     *
+     * @param year
+     * @return
+     */
+    public static boolean isLeap(int year) {
+        if (((year % 100 == 0) && year % 400 == 0) || ((year % 100 != 0) && year % 4 == 0))
+            return true;
+        else
+            return false;
     }
 
 }

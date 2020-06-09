@@ -3,6 +3,7 @@ package io.github.ljwlgl.util;
 import org.junit.Test;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
@@ -91,5 +92,39 @@ public class DateUtilTest {
     @Test
     public void testDateToVoString() {
         assertEquals("result", DateUtil.dateToVoString(new GregorianCalendar(2019, Calendar.JANUARY, 1).getTime()));
+    }
+
+    @Test
+    public void getYear() {
+        int year = DateUtil.getYear(new Date());
+    }
+
+    @Test
+    public void getMonth() {
+        int month = DateUtil.getMonth(new Date());
+    }
+
+    @Test
+    public void getDay() {
+
+        int day = DateUtil.getDay(new Date());
+    }
+
+    @Test
+    public void getMonthLastDay() {
+
+
+        int day = DateUtil.getMonthLastDay(2020, 5);
+    }
+
+    @Test
+    public void getPercentage() {
+        float per = DateUtil.getPercentage(new Date());
+    }
+
+    @Test
+    public void isLeap() {
+
+        boolean rs = DateUtil.isLeap(2021);
     }
 }
