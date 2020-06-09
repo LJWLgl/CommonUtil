@@ -2,10 +2,8 @@ package io.github.ljwlgl.util;
 
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author ：lzz
@@ -25,32 +23,35 @@ public class StringUtilTest {
 
     @Test
     public void appendZero() {
-        String rs = StringUtil.appendZero("1", 9);
+
+
+        assertEquals("000000001", StringUtil.appendZero("1", 9));
 
     }
 
     @Test
     public void castDouble() {
 
-        double rs = StringUtil.castDouble("234", 2);
+
     }
 
     @Test
     public void castInt() {
 
-        int rs = StringUtil.castInt("", 2);
+        assertEquals(2, StringUtil.castInt("", 2));
+
 
     }
 
     @Test
     public void reolaceString() {
 
-        String rs = StringUtil.replaceString("12345677", "1", "我的");
+        assertEquals("我的名字", StringUtil.replaceString("1名字", "1","我的"));
     }
 
     @Test
     public void getKey() {
 
-        String key=StringUtil.getKey();
+        String key = StringUtil.getKey();
     }
 }

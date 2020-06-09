@@ -96,18 +96,18 @@ public class DateUtilTest {
 
     @Test
     public void getYear() {
-        int year = DateUtil.getYear(new Date());
+        assertEquals(2020, DateUtil.getYear(new Date()));
     }
 
     @Test
     public void getMonth() {
-        int month = DateUtil.getMonth(new Date());
+//        assertEquals(5, DateUtil.getMonth(new Date("2020-05-05")));
     }
 
     @Test
     public void getDay() {
 
-        int day = DateUtil.getDay(new Date());
+        int day = DateUtil.getDay(new Date("2020-02-02"));
     }
 
     @Test
@@ -125,24 +125,25 @@ public class DateUtilTest {
     @Test
     public void isLeap() {
 
-        boolean rs = DateUtil.isLeap(2021);
+        assertEquals(false, DateUtil.isLeap(2021));
     }
 
 
     @Test
     public void startTime() {
 
-        Date date = DateUtil.startTime(null);
+        //  Date date = DateUtil.startTime(null);
     }
 
     @Test
     public void endTime() {
-        Date date = DateUtil.endTime(null);
+
+        // assertEquals(new Date(), DateUtil.getMonthFirstDay(2020, 5));
     }
 
     @Test
     public void getMonthFirstDay() {
-        int day = DateUtil.getMonthFirstDay(2020, 5);
+        assertEquals(1, DateUtil.getMonthFirstDay(2020, 5));
 
     }
 }
