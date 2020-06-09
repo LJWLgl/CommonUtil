@@ -309,6 +309,22 @@ public class DateUtil {
     }
 
     /**
+     * 获取某月的第一天
+     *
+     * @param year
+     * @param month
+     * @return
+     */
+    public static int getMonthFirstDay(int year, int month) {
+        Calendar a = Calendar.getInstance();
+        a.set(Calendar.YEAR, year);
+        a.set(Calendar.MONTH, month);
+        a.set(Calendar.DATE, 1);//把日期设置为当月第一天
+        int maxDate = a.get(Calendar.DATE);
+        return maxDate;
+    }
+
+    /**
      * 判断是否是闰年
      *
      * @param year
@@ -321,4 +337,37 @@ public class DateUtil {
             return false;
     }
 
+    /**
+     * 获取传入当日0点
+     *
+     * @param time
+     * @return
+     */
+    public static Date startTime(Date time) {
+        if (time == null) time = new Date();
+        Calendar todayStart = Calendar.getInstance();
+        todayStart.setTime(time);
+        todayStart.set(Calendar.HOUR_OF_DAY, 0);
+        todayStart.set(Calendar.MINUTE, 0);
+        todayStart.set(Calendar.SECOND, 0);
+        todayStart.set(Calendar.MILLISECOND, 0);
+        return todayStart.getTime();
+    }
+
+    /**
+     * 获取传入当日最后一刻
+     *
+     * @param time
+     * @return
+     */
+    public static Date endTime(Date time) {
+        if (time == null) time = new Date();
+        Calendar todayStart = Calendar.getInstance();
+        todayStart.setTime(time);
+        todayStart.set(Calendar.HOUR_OF_DAY, 23);
+        todayStart.set(Calendar.MINUTE, 59);
+        todayStart.set(Calendar.SECOND, 59);
+        todayStart.set(Calendar.MILLISECOND, 999);
+        return todayStart.getTime();
+    }
 }

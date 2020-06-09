@@ -127,4 +127,22 @@ public class DateUtilTest {
 
         boolean rs = DateUtil.isLeap(2021);
     }
+
+
+    @Test
+    public void startTime() {
+
+        Date date = DateUtil.startTime(null);
+    }
+
+    @Test
+    public void endTime() {
+        Date date = DateUtil.endTime(null);
+    }
+
+    @Test
+    public void getMonthFirstDay() {
+        int day = DateUtil.getMonthFirstDay(2020, 5);
+
+    }
 }
