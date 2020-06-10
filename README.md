@@ -205,6 +205,9 @@ public class EmailUtilTest {
 <a href="https://github.com/drinkagain">
     <img src="https://avatars2.githubusercontent.com/u/29560256?s=400&u=03abc1be6f633c0afbbfc07ec9bdeb9fd3e86a09&v=4" width="45px">
 </a>
+<a href="https://github.com/lizeze">
+    <img src="https://avatars2.githubusercontent.com/u/33169073?s=400&u=f48fa869f2a1739f7716ac80c181300473833796&v=4" width="45px">
+</a>
 
 
 **简单说明PR原则**
