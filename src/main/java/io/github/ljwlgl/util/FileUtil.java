@@ -14,6 +14,7 @@ public class FileUtil {
 
     /**
      * Resource目录下*.properties文件
+     *
      * @param key key
      * @return value
      */
@@ -28,6 +29,18 @@ public class FileUtil {
         }
     }
 
+    /**
+     * 获取文件后缀名
+     *
+     * @param fileName
+     * @return
+     */
+    public static String getSuffix(String fileName) {
+        if (StringUtil.isEmptyOrNull(fileName)) return "";
+        String suffix = fileName.substring(fileName.lastIndexOf(".") + 1);
+        return suffix;
+
+    }
 
     public static String readJsonFile(String fileName) {
         String jsonStr = "";
@@ -35,7 +48,7 @@ public class FileUtil {
             File jsonFile = new File(DEFAULT_PATH_PREFIX + fileName);
             FileReader fileReader = new FileReader(jsonFile);
 
-            Reader reader = new InputStreamReader(new FileInputStream(jsonFile),"utf-8");
+            Reader reader = new InputStreamReader(new FileInputStream(jsonFile), "utf-8");
             int ch = 0;
             StringBuffer sb = new StringBuffer();
             while ((ch = reader.read()) != -1) {
