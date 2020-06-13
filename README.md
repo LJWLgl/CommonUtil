@@ -168,7 +168,7 @@ csv作为开发常常需要处理的文件格式，本项目主要提供以下�
 -  **add(Map<String, String> originMap, String ... keyValues)**，在原Map添加keyValues
 
 ### **LangArabicNumConvertUtil(语言数字与阿拉伯数字转换工具类)**
-- **String lang2ArabicNumber(String word, String majorLocale)**，将语言数字转成阿拉伯数字，目前只支持英语和中文的转换，使用请参考示例（参数说明，majorLocale：中文zh或英语en）
+- **String lang2ArabicNumber(String word, String majorLocale)**，将语言数字转成阿拉伯数字，目前只支持英语和中文的转换，使用请参考示例[LangArabicNumConvertUtil](#LangArabicNumConvertUtil)（参数说明，majorLocale：中文zh或英语en）
 - **String arabic2LangNumber(String word, String majorLocale)**，将阿拉伯数字转成语言数字，该方法暂不支持
 
 ### **StringUtil(字符串工具类)**
