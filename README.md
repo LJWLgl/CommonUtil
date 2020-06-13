@@ -17,6 +17,8 @@
     - [GZIPUtil(通过Gzip算法压缩和解压)](#gziputil通过gzip算法压缩和解压)
     - [CaptchaUtil(验证码工具类)](#captchautil验证码工具类)
     - [UrlParamsUtil（对URL参数处理的工具类）](#urlparamsutil对url参数处理的工具类)
+    - [LangArabicNumConvertUtil(语言数字与阿拉伯数字转换工具类)](#langarabicnumconvertutil语言数字与阿拉伯数字转换工具类)
+    - [StringUtil(字符串工具类)](#stringutil字符串工具类)
     - [EmailUtil(邮件发送工具类)](#emailutil邮件发送工具类)
 - [关于开源](#关于开源)
 - [Contributor](#contributor)
@@ -165,6 +167,18 @@ csv作为开发常常需要处理的文件格式，本项目主要提供以下�
 -  **Map<String, String> build(String ... keyValues)**，将keyValues转成Map
 -  **add(Map<String, String> originMap, String ... keyValues)**，在原Map添加keyValues
 
+### **LangArabicNumConvertUtil(语言数字与阿拉伯数字转换工具类)**
+- **String lang2ArabicNumber(String word, String majorLocale)**，将语言数字转成阿拉伯数字，目前只支持英语和中文的转换，使用请参考示例（参数说明，majorLocale：中文zh或英语en）
+- **String arabic2LangNumber(String word, String majorLocale)**，将阿拉伯数字转成语言数字，该方法暂不支持
+
+### **StringUtil(字符串工具类)**
+对于字符串工具类，优先推荐使用org.apache.commons.lang3下的StringUtils以及java.lang.String的自带方法，本工具类只是补充了一些个别方法。
+- **String replaceString(String str, Map<String, String> oldNewMap)**， 批量替换字符
+- **String subArr2String(int i, int j, char[] arr)**，将字符数组的子集合成新的字符串
+- **String subArr2String(int i, int j, String[] arr, String separator)**，将字符串数组的子串合成一个新的字符串
+- **double castDouble(Object obj, double defaultValue)**，转为double类型 ，如果obj为null或者空字符串或者格式不对则返回defaultValue
+- **double cast...(Object obj, double defaultValue)**，转换成对应的基础类型
+
 ### **EmailUtil(邮件发送工具类)**
 
 邮件工具类是通过JavaEmail实现，企业级项目一般都会专门的服务去发送邮件，但如果自己的小Demo，用工具类发送Email也未尝不可。示例Demo如下，有兴趣的可以fork代码自己研究一下，代码有详情的注释。
@@ -216,6 +230,19 @@ public class EmailUtilTest {
 - 充分的Unit Test，保证每行代码和分支都要覆盖到
 - 代码规范，请遵循[阿里巴巴Java开发手册](https://yq.aliyun.com/articles/69327)
 
+## 使用示例
+### LangArabicNumConvertUtil
+```java
+// 中文转阿拉伯数字示例
+LangArabicNumConvertUtil.lang2ArabicNumber("北京三里墩五星小区第陆拾肆栋六零二室", "zh")
+// 英文转阿拉伯数字示例
+LangArabicNumConvertUtil.lang2ArabicNumber("six six six Beijing abnormalities mottoes Litun two hundred and sixties-five Hotel seven thousand eight hundred and ninety-four", "en")
+
+// 输出
+// 北京3里墩5星小区第64栋602室
+// 666 beijing abnormalities mottoes litun 200 and sixties-five hotel 7894
+```
+
 ## 更新日志
 - 2018年08月
 	- 创建项目
@@ -226,6 +253,6 @@ public class EmailUtilTest {
     - 补充一些method的注释
 - 2020年06月
     - 发布2.1.0版本
-    - 新增CsvUtil
+    - 新增CsvUtil、LangArabicNumConvertUtil、StringUtil
     - 补充单元测试	
 	 	

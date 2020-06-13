@@ -1,5 +1,6 @@
 package io.github.ljwlgl.util;
 
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -99,8 +100,23 @@ public class StringUtil {
     public static String replaceString(String str, String oldString, String newString) {
         if (StringUtil.isEmptyOrNull(str)) return "";
         return str.replaceAll(oldString, newString);
+    }
 
-
+    /**
+     * 批量替换字符
+     * @param str str
+     * @param oldNewMap 输入字符串
+     * @return 新的字符串
+     */
+    public static String replaceString(String str, Map<String, String> oldNewMap) {
+        if (oldNewMap == null || oldNewMap.size() == 0) {
+            return str;
+        }
+        String newStr = str;
+        for (Map.Entry<String, String> entry : oldNewMap.entrySet()) {
+            newStr = newStr.replace(entry.getKey(), entry.getValue());
+        }
+        return newStr;
     }
 
     private static String castString(Object obj) {
@@ -109,6 +125,48 @@ public class StringUtil {
 
     public static String castString(Object obj, String defaultValue) {
         return obj != null ? String.valueOf(obj) : defaultValue;
+    }
+
+    /**
+     * 将字符数组的子集合成新的字符串
+     * @param i 子集的开始id
+     * @param j 子集的结束id
+     * @param arr 字符数组
+     * @return 新的字符串
+     */
+    public static String subArr2String(int i, int j, char[] arr) {
+        if (j < i) {
+            return null;
+        }
+        StringBuilder builder = new StringBuilder();
+        for (int k = i; k < j; k++) {
+            builder.append(arr[k]);
+        }
+        return builder.toString();
+    }
+
+    /**
+     *  将字符串数组的子串合成一个新的字符串
+     * @param i 子串开始index
+     * @param j 子串结束index
+     * @param arr 字符串数组
+     * @param separator 分隔符
+     * @return 新的字符串
+     */
+    public static String subArr2String(int i, int j, String[] arr, String separator) {
+        if (j < i) {
+            return null;
+        }
+        StringBuilder builder = new StringBuilder();
+        for (int k = i; k < j - 1; k++) {
+            if (separator != null) {
+                builder.append(arr[k]).append(separator);
+            } else {
+                builder.append(arr[k]);
+            }
+        }
+        builder.append(arr[j - 1]);
+        return builder.toString().trim();
     }
 
 }
