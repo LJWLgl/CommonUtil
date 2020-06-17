@@ -20,6 +20,7 @@
     - [LangArabicNumConvertUtil(语言数字与阿拉伯数字转换工具类)](#langarabicnumconvertutil语言数字与阿拉伯数字转换工具类)
     - [StringUtil(字符串工具类)](#stringutil字符串工具类)
     - [EmailUtil(邮件发送工具类)](#emailutil邮件发送工具类)
+    - [XmlConfUtil(解析XMl配置工具类)](#xmlconfutil解析XMl配置工具类)
 - [关于开源](#关于开源)
 - [Contributor](#contributor)
 - [更新日志](#更新日志)
@@ -197,6 +198,11 @@ public class EmailUtilTest {
 
 }
 ```
+
+### **xmlconfutil解析XMl配置工具类**
+解析工具通过JAXB实现，主要用于xml配置文件的实例化，以及生成配置类javaBean对应的xml
+- **<T> T xml2JBean(Class<?> clazz, InputStream in)**，将xml实例化为T类型实例
+- **void jBean2Xml(Object instance, OutputStream out)**，将配置类实例instance解析为xml
 
 ## 关于开源
 
