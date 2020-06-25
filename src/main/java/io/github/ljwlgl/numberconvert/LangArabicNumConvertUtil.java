@@ -13,12 +13,6 @@ public class LangArabicNumConvertUtil {
 
     private static Map<String, LangArabicNumberConvert> convertMap = initCovertMap();
 
-    /**
-     * 语言数字转阿拉伯数字
-     * @param word
-     * @param majorLocale en或zh
-     * @return
-     */
     public static String lang2ArabicNumber(String word, String majorLocale) {
         if (convertMap.get(majorLocale.toLowerCase()) == null) {
             return word;
@@ -26,17 +20,18 @@ public class LangArabicNumConvertUtil {
         return convertMap.get(majorLocale).toArabicNumber(word);
     }
 
-    /**
-     * 阿拉伯数字转语言数字
-     * @param word
-     * @param majorLocale
-     * @return
-     */
     public static String arabic2LangNumber(String word, String majorLocale) {
         if (convertMap.get(majorLocale) == null) {
             return word;
         }
         return convertMap.get(majorLocale).toLangNumber(word);
+    }
+
+    public static String arabic2NoDecimalLangNumber(String word, String majorLocale) {
+        if (convertMap.get(majorLocale) == null) {
+            return word;
+        }
+        return convertMap.get(majorLocale).toNoDecimalLangNumber(word);
     }
 
     private static Map<String, LangArabicNumberConvert> initCovertMap() {

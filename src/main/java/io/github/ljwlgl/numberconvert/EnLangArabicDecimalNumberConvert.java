@@ -15,11 +15,12 @@ import java.util.stream.Collectors;
 
 public class EnLangArabicDecimalNumberConvert extends LangArabicNumberConvert {
 
+
     private NumberWordConvert numberWordConvert = new NumberWordConvert();
 
     @Override
     boolean isDecimalNum(String word) {
-        return Arrays.stream(word.split(" ")).anyMatch(DataTool.weightNames::contains);
+        return Arrays.stream(StringUtils.split(word, " -")).anyMatch(DataTool.weightNames::contains);
     }
 
     @Override
@@ -46,7 +47,26 @@ public class EnLangArabicDecimalNumberConvert extends LangArabicNumberConvert {
 
     @Override
     String toLangNumber(String word) {
-        return null;
+        if (StringUtils.isBlank(word)) {
+            return word;
+        }
+        Set<String> numbers = separateArabicNumbers(word);
+        if (CollectionUtils.isEmpty(numbers)) {
+            return word;
+        }
+        Map<String, String> replaceMap = new HashMap<>();
+        for (String number : numbers) {
+            replaceMap.put(number, String.valueOf(numberWordConvert.format(Integer.parseInt(number))));
+        }
+        return StringUtil.replaceString(word, replaceMap);
+    }
+
+    @Override
+    String toNoDecimalLangNumber(String word) {
+        if (StringUtils.isBlank(word)) {
+            return word;
+        }
+        return numberWordConvert.noDecimalFormat(word);
     }
 
     /**
@@ -72,6 +92,43 @@ public class EnLangArabicDecimalNumberConvert extends LangArabicNumberConvert {
             }
         }
         return numbers;
+    }
+
+    /**
+     * 从文本中分离出对应字符
+     * @param str 输入文本
+     * @return 数字文本集合
+     */
+    public Set<String> separateArabicNumbers(String str) {
+        Set<String> numbers = new HashSet<>();
+        char[] chrArr = str.toCharArray();
+        // 正向最大匹配
+        for (int i = 0; i < chrArr.length; i++) {
+            String maxNumber = "";
+            int maxLength = 0;
+            for (int j = i + 1; j <= chrArr.length; j++) {
+                if (isAllArabicNumber(i, j, chrArr)) {
+                    if (j - i > maxLength) {
+                        maxNumber = StringUtil.subArr2String(i, j, chrArr);
+                        maxLength = j -i;
+                    }
+                }
+            }
+            if (maxLength > 0) {
+                numbers.add(maxNumber);
+                i += maxLength;
+            }
+        }
+        return numbers;
+    }
+
+    public boolean isAllArabicNumber(int i, int j, char[] arr) {
+        for (int k = i; k < j; k++) {
+            if (! DataTool.arabicNumberMap.containsKey(arr[k])) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public boolean isAllEngListNumber(int i, int j, String[] arr) {
@@ -173,6 +230,19 @@ public class EnLangArabicDecimalNumberConvert extends LangArabicNumberConvert {
             return sb.toString();
         }
 
+        public String noDecimalFormat(String str) {
+            StringBuilder builder = new StringBuilder();
+            char[] charArr = str.toCharArray();
+            for (int i = 0; i < charArr.length; i++) {
+                if (DataTool.arabicNumberMap.containsKey(charArr[i])) {
+                    builder.append(" ").append(DataTool.arabicNumberMap.get(charArr[i])).append(" ");
+                } else {
+                    builder.append(charArr[i]);
+                }
+            }
+            return builder.toString().replaceAll("[ ]+", " ").trim();
+        }
+
         //英文转数字
         public int parse(String str) {
             int i = 0;
@@ -219,6 +289,7 @@ public class EnLangArabicDecimalNumberConvert extends LangArabicNumberConvert {
         public static Set<String> numberNames = new HashSet<>();
         public static Set<String> weightNames = new HashSet<>();
         public static Set<String> singleNames = new HashSet<>();
+        public static Map<Character, String> arabicNumberMap = new HashMap<>();
 
         static {
             enNameValMap.put("zero", 0);
@@ -285,6 +356,17 @@ public class EnLangArabicDecimalNumberConvert extends LangArabicNumberConvert {
             singleNames.add("seven");
             singleNames.add("eight");
             singleNames.add("nine");
+
+            arabicNumberMap.put('0', "zero");
+            arabicNumberMap.put('1', "one");
+            arabicNumberMap.put('2', "two");
+            arabicNumberMap.put('3', "three");
+            arabicNumberMap.put('4', "four");
+            arabicNumberMap.put('5', "five");
+            arabicNumberMap.put('6', "six");
+            arabicNumberMap.put('7', "seven");
+            arabicNumberMap.put('8', "eight");
+            arabicNumberMap.put('9', "nine");
 
             numberNames.addAll(enNameValMap.keySet());
         }

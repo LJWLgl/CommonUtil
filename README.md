@@ -168,9 +168,9 @@ csv作为开发常常需要处理的文件格式，本项目主要提供以下�
 -  **add(Map<String, String> originMap, String ... keyValues)**，在原Map添加keyValues
 
 ### **LangArabicNumConvertUtil(语言数字与阿拉伯数字转换工具类)**
-- **String lang2ArabicNumber(String word, String majorLocale)**，将语言数字转成阿拉伯数字，目前只支持英语和中文的转换，使用请参考示例[LangArabicNumConvertUtil](#LangArabicNumConvertUtil)（参数说明，majorLocale：中文zh或英语en）
-- **String arabic2LangNumber(String word, String majorLocale)**，将阿拉伯数字转成语言数字，该方法暂不支持
-
+- **String lang2ArabicNumber(String word, String majorLocale)**，将语言数字转成阿拉伯数字，目前只支持英语和中文的转换，使用请参考示例[LangArabicNumConvertUtil](#LangArabicNumConvertUtil Demo)（参数说明，majorLocale：中文zh或英语en）
+- **String arabic2LangNumber(String word, String majorLocale)**，将阿拉伯数字转成语言数字，会转成带进制的语言数字（如，16会转成十六），使用请参考示例[LangArabicNumConvertUtil](#LangArabicNumConvertUtil Demo)
+- **String arabic2NoDecimalLangNumber(String word, String majorLocale)**，将阿拉伯数字转成语言数字，会转成不带进制的语言数字（如，16会转成一六），使用请参考示例[LangArabicNumConvertUtil](#LangArabicNumConvertUtil Demo)
 ### **StringUtil(字符串工具类)**
 对于字符串工具类，优先推荐使用org.apache.commons.lang3下的StringUtils以及java.lang.String的自带方法，本工具类只是补充了一些个别方法。
 - **String replaceString(String str, Map<String, String> oldNewMap)**， 批量替换字符
@@ -181,27 +181,11 @@ csv作为开发常常需要处理的文件格式，本项目主要提供以下�
 
 ### **EmailUtil(邮件发送工具类)**
 
-邮件工具类是通过JavaEmail实现，企业级项目一般都会专门的服务去发送邮件，但如果自己的小Demo，用工具类发送Email也未尝不可。示例Demo如下，有兴趣的可以fork代码自己研究一下，代码有详情的注释。
-```java
-public class EmailUtilTest {
-    @Before
-    public void before() throws GeneralSecurityException {
-        // 发送邮箱配置，授权密码可以去邮件运营商获取
-        EmailUtil.config(EmailUtil.SMTP_QQ(false), "xxx@qq.com", "xxxxxx");
-    }
-
-    @Test
-    public void testSendText() throws MessagingException {
-        System.out.println("test");
-    }
-
-}
-```
+邮件工具类是通过JavaEmail实现，企业级项目一般都会专门的服务去发送邮件，但如果自己的小Demo，用工具类发送Email也未尝不可。
+可参考[EmailUtil](#EmailUtil Demo)如下，有兴趣的可以fork代码自己研究一下，代码有详情的注释。
 
 ## 关于开源
-
 本项目是开源项目，若有摘取本项目的代码，请注明出处！（码字不易，请尊重开源精神）
-
 
 ## Contributor
 
@@ -231,16 +215,36 @@ public class EmailUtilTest {
 - 代码规范，请遵循[阿里巴巴Java开发手册](https://yq.aliyun.com/articles/69327)
 
 ## 使用示例
-### LangArabicNumConvertUtil
+### LangArabicNumConvertUtil Demo
 ```java
 // 中文转阿拉伯数字示例
-LangArabicNumConvertUtil.lang2ArabicNumber("北京三里墩五星小区第陆拾肆栋六零二室", "zh")
+LangArabicNumConvertUtil.lang2ArabicNumber("北京三里墩五星小区第陆拾肆栋六零二室", "zh");
 // 英文转阿拉伯数字示例
 LangArabicNumConvertUtil.lang2ArabicNumber("six six six Beijing abnormalities mottoes Litun two hundred and sixties-five Hotel seven thousand eight hundred and ninety-four", "en")
+// 阿拉伯数字转中文
+LangArabicNumConvertUtil.arabic2LangNumber("北京3里墩5星小区第64栋602室", "zh")
 
 // 输出
 // 北京3里墩5星小区第64栋602室
 // 666 beijing abnormalities mottoes litun 200 and sixties-five hotel 7894
+// 北京三里墩五星小区第六十四栋六百零二室
+```
+
+### EmailUtil Demo
+```java
+public class EmailUtilTest {
+    @Before
+    public void before() throws GeneralSecurityException {
+        // 发送邮箱配置，授权密码可以去邮件运营商获取
+        EmailUtil.config(EmailUtil.SMTP_QQ(false), "xxx@qq.com", "xxxxxx");
+    }
+
+    @Test
+    public void testSendText() throws MessagingException {
+        System.out.println("test");
+    }
+
+}
 ```
 
 ## 更新日志

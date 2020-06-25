@@ -13,4 +13,6 @@ public abstract class LangArabicNumberConvert {
 
     abstract String toLangNumber(String word);
 
+    abstract String toNoDecimalLangNumber(String word);
+
 }

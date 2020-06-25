@@ -3,6 +3,8 @@ package io.github.ljwlgl.numberconvert;
 import com.google.common.collect.Lists;
 import io.github.ljwlgl.util.StringUtil;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
 
@@ -14,13 +16,17 @@ import java.util.*;
 
 public class ZhLangArabicDecimalNumberConvert extends LangArabicNumberConvert {
 
-    private NumberChangeToChinese numberChangeToChinese = new NumberChangeToChinese();
+    private ArabicNumberToChineseNum arabicNumberToChineseNum = new ArabicNumberToChineseNum();
+    private ArabicNumberToNoDecimalChineseNum arabicNumberToNoDecimalChineseNum = new ArabicNumberToNoDecimalChineseNum();
     private ChineseChangeToNumber chineseChangeToNumber = new ChineseChangeToNumber();
     private ChineseConvertNoDecimalNumber chineseConvertNoDecimalNumber = new ChineseConvertNoDecimalNumber();
 
     @Override
     String toArabicNumber(String word) {
-        Set<String> numbers = separateNumbers(word);
+        if (StringUtils.isBlank(word)) {
+            return word;
+        }
+        Set<String> numbers = separateNumbers(word, this::isAllChineseNumber);
         if (CollectionUtils.isEmpty(numbers)) {
             return word;
         }
@@ -37,12 +43,31 @@ public class ZhLangArabicDecimalNumberConvert extends LangArabicNumberConvert {
 
     @Override
     String toLangNumber(String word) {
-        return numberChangeToChinese.numberToChinese(10);
+        if (StringUtils.isBlank(word)) {
+            return word;
+        }
+        Set<String> numbers = separateNumbers(word, this::isAllArabicNumber);
+        if (CollectionUtils.isEmpty(numbers)) {
+            return word;
+        }
+        Map<String, String> replaceMap = new HashMap<>();
+        for (String number : numbers) {
+            replaceMap.put(number, arabicNumberToChineseNum.numberToChinese(Integer.parseInt(number)));
+        }
+        return StringUtil.replaceString(word, replaceMap);
+    }
+
+    @Override
+    String toNoDecimalLangNumber(String word) {
+        if (StringUtils.isBlank(word)) {
+            return word;
+        }
+        return arabicNumberToNoDecimalChineseNum.numberToNoDecimalChinese(word);
     }
 
     @Override
     public boolean isDecimalNum(String str) {
-        if (str.length() >= 2 && str.startsWith("十")) {
+        if ((str.length() == 2 || str.length() == 1)   && (str.startsWith("十") || str.startsWith("拾"))) {
             return true;
         }
         if (DataTool.chnUnitNameList.stream().noneMatch(str::contains)) {
@@ -55,19 +80,20 @@ public class ZhLangArabicDecimalNumberConvert extends LangArabicNumberConvert {
                 break;
             }
         }
-        if (firstWeightIndex >= 1 && (Arrays.binarySearch(DataTool.bigChnNumChinese, str.charAt(firstWeightIndex - 1)) != -1
-                ||  Arrays.binarySearch(DataTool.chnNumChinese, str.charAt(firstWeightIndex - 1)) != -1 )) {
+        if (firstWeightIndex >= 1
+                && (ArrayUtils.indexOf(DataTool.bigChnNumChinese, str.charAt(firstWeightIndex - 1)) != -1
+                    ||  ArrayUtils.indexOf(DataTool.chnNumChinese, str.charAt(firstWeightIndex - 1)) != -1 )) {
             return true;
         }
         return false;
     }
 
     /**
-     * 从文本中分离数字字符
+     * 从文本中分离出对应字符
      * @param str 输入文本
      * @return 数字文本集合
      */
-    public Set<String> separateNumbers(String str) {
+    public Set<String> separateNumbers(String str, Apply<Boolean> apply) {
         Set<String> numbers = new HashSet<>();
         char[] chrArr = str.toCharArray();
         // 正向最大匹配
@@ -75,7 +101,7 @@ public class ZhLangArabicDecimalNumberConvert extends LangArabicNumberConvert {
             String maxNumber = "";
             int maxLength = 0;
             for (int j = i + 1; j <= chrArr.length; j++) {
-                if (isAllChineseNumber(i, j, chrArr)) {
+                if (apply.apply(i, j, chrArr)) {
                     if (j - i > maxLength) {
                         maxNumber = StringUtil.subArr2String(i, j, chrArr);
                         maxLength = j -i;
@@ -92,14 +118,42 @@ public class ZhLangArabicDecimalNumberConvert extends LangArabicNumberConvert {
 
     private boolean isAllChineseNumber(int i, int j, char[] arr) {
         for (int k = i; k < j; k++) {
-            if (! DataTool.valueMap.containsKey(arr[k])) {
+            if (! DataTool.valueMap.containsKey(arr[k]) && ! DataTool.chnUnitNameList.contains(String.valueOf(arr[k]))) {
                 return false;
             }
         }
         return true;
     }
 
-    private static class NumberChangeToChinese {
+    private Boolean isAllArabicNumber(int i, int j, char[] arr) {
+        for (int k = i; k < j; k++) {
+            if (! DataTool.numberNameMap.containsKey(arr[k])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private interface Apply<T> {
+        T apply(int i, int j, char[] arr);
+    }
+
+    private static class ArabicNumberToNoDecimalChineseNum {
+        public String numberToNoDecimalChinese(String str) {
+            StringBuilder builder = new StringBuilder();
+            char[] charArr = str.toCharArray();
+            for (char chr : charArr) {
+                if (DataTool.numberNameMap.get(chr) != null) {
+                    builder.append(DataTool.numberNameMap.get(chr));
+                } else {
+                    builder.append(chr);
+                }
+            }
+            return builder.toString();
+        }
+    }
+
+    private static class ArabicNumberToChineseNum {
 
         public String numberToChinese(int num) {//转化一个阿拉伯数字为中文字符串
             if (num == 0) {
@@ -129,7 +183,10 @@ public class ZhLangArabicDecimalNumberConvert extends LangArabicNumberConvert {
                 num = num / 10000;
                 unitPos++;
             }
-            return All;
+            if (All.startsWith("一十")) {
+                All = All.substring(1);
+            }
+            return All.trim();
         }
 
         private String sectionTOChinese(int section, String chineseNum) {
@@ -161,7 +218,7 @@ public class ZhLangArabicDecimalNumberConvert extends LangArabicNumberConvert {
     public class ChineseChangeToNumber {
 
         public int chineseToNumber(String str) {
-            if (str.length() == 2 && (str.startsWith("十") || str.startsWith("拾"))) {
+            if ((str.length() == 2 || str.length() == 1) && (str.startsWith("十") || str.startsWith("拾"))) {
                 str = "一" + str;
             }
             String str1 = new String();
@@ -176,12 +233,12 @@ public class ZhLangArabicDecimalNumberConvert extends LangArabicNumberConvert {
             }
             String chineseNum = str;
             for (int i = 0; i < chineseNum.length(); i++) {
-                if (chineseNum.charAt(i) == '亿') {
+                if (chineseNum.charAt(i) == '亿' || chineseNum.charAt(i) == '億') {
                     str1 = chineseNum.substring(0, i);//截取亿前面的数字，逐个对照表格，然后转换
                     k = i + 1;
                     dealflag = false;//已经处理
                 }
-                if (chineseNum.charAt(i) == '万') {
+                if (chineseNum.charAt(i) == '万' || chineseNum.charAt(i) == '萬') {
                     str2 = chineseNum.substring(k, i);
                     str3 = str.substring(i + 1);
                     dealflag = false;//已经处理
@@ -230,6 +287,7 @@ public class ZhLangArabicDecimalNumberConvert extends LangArabicNumberConvert {
         }
     }
 
+
     private static class DataTool {
         //数字位
         public static String[] chnNumChar = {"零", "一", "二", "三", "四", "五", "六", "七", "八", "九"};
@@ -241,27 +299,36 @@ public class ZhLangArabicDecimalNumberConvert extends LangArabicNumberConvert {
         public static String[] chnUnitSection = {"", "万", "亿", "万亿"};
         //权位
         public static String[] chnUnitChar = {"", "十", "百", "千"};
-        public static HashMap<Character, Integer> valueMap = new HashMap<>();
-        public static HashMap<Character, Integer> singleValueMap = new HashMap<>();
+        public static Map<Character, Integer> valueMap = new HashMap<>();
+        public static Map<Character, Integer> singleValueMap = new HashMap<>();
 
-        public static List<String> chnUnitNameList = Lists.newArrayList("亿", "万", "仟", "千", "佰", "百", "十", "拾");
+        public static Map<Character, Character> numberNameMap = new HashMap<>();
+
+        public static List<String> chnUnitNameList = Lists.newArrayList( "億", "亿", "萬", "万", "仟", "千", "佰", "百", "十", "拾");
 
          static {
-                for (int i = 0; i < chnNumChinese.length; i++) {
-                    valueMap.put(chnNumChinese[i], i);
-                    singleValueMap.put(chnNumChinese[i], i);
-                }
-                for (int i = 0; i < bigChnNumChinese.length; i++) {
-                    valueMap.put(bigChnNumChinese[i], i + 1);
-                    singleValueMap.put(bigChnNumChinese[i], i + 1);
-                }
-                valueMap.put('十', 10);
-                valueMap.put('拾', 10);
-                valueMap.put('百', 100);
-                valueMap.put('佰', 100);
-                valueMap.put('千', 1000);
-                valueMap.put('仟', 1000);
-            }
+             for (int i = 0; i < chnNumChinese.length; i++) {
+                 valueMap.put(chnNumChinese[i], i);
+                 singleValueMap.put(chnNumChinese[i], i);
+                 numberNameMap.put((char)(i + 48), chnNumChinese[i]);
+             }
+             for (int i = 0; i < bigChnNumChinese.length; i++) {
+                 valueMap.put(bigChnNumChinese[i], i + 1);
+                 singleValueMap.put(bigChnNumChinese[i], i + 1);
+             }
+             // 繁体
+             valueMap.put((char)36144, 2);
+             valueMap.put('陸', 6);
+             singleValueMap.put('貳', 2);
+             singleValueMap.put('陸', 6);
+
+             valueMap.put('十', 10);
+             valueMap.put('拾', 10);
+             valueMap.put('百', 100);
+             valueMap.put('佰', 100);
+             valueMap.put('千', 1000);
+             valueMap.put('仟', 1000);
+         }
 
     }
 
