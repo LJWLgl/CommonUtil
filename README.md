@@ -169,9 +169,9 @@ csv作为开发常常需要处理的文件格式，本项目主要提供以下�
 -  **add(Map<String, String> originMap, String ... keyValues)**，在原Map添加keyValues
 
 ### **LangArabicNumConvertUtil(语言数字与阿拉伯数字转换工具类)**
-- **String lang2ArabicNumber(String word, String majorLocale)**，将语言数字转成阿拉伯数字，目前只支持英语和中文的转换，使用请参考示例[LangArabicNumConvertUtil](#LangArabicNumConvertUtil Demo)（参数说明，majorLocale：中文zh或英语en）
-- **String arabic2LangNumber(String word, String majorLocale)**，将阿拉伯数字转成语言数字，会转成带进制的语言数字（如，16会转成十六），使用请参考示例[LangArabicNumConvertUtil](#LangArabicNumConvertUtil Demo)
-- **String arabic2NoDecimalLangNumber(String word, String majorLocale)**，将阿拉伯数字转成语言数字，会转成不带进制的语言数字（如，16会转成一六），使用请参考示例[LangArabicNumConvertUtil](#LangArabicNumConvertUtil Demo)
+- **String lang2ArabicNumber(String word, String majorLocale)**，将语言数字转成阿拉伯数字，目前只支持英语和中文的转换，使用请参考示例[LangArabicNumConvertUtil](#LangArabicNumConvertUtil(Demo))（参数说明，majorLocale：中文zh或英语en）
+- **String arabic2LangNumber(String word, String majorLocale)**，将阿拉伯数字转成语言数字，会转成带进制的语言数字（如，16会转成十六），使用请参考示例[LangArabicNumConvertUtil](#LangArabicNumConvertUtil(Demo))
+- **String arabic2NoDecimalLangNumber(String word, String majorLocale)**，将阿拉伯数字转成语言数字，会转成不带进制的语言数字（如，16会转成一六），使用请参考示例[LangArabicNumConvertUtil](#LangArabicNumConvertUtil(Demo))
 ### **StringUtil(字符串工具类)**
 对于字符串工具类，优先推荐使用org.apache.commons.lang3下的StringUtils以及java.lang.String的自带方法，本工具类只是补充了一些个别方法。
 - **String replaceString(String str, Map<String, String> oldNewMap)**， 批量替换字符
@@ -183,7 +183,7 @@ csv作为开发常常需要处理的文件格式，本项目主要提供以下�
 ### **EmailUtil(邮件发送工具类)**
 
 邮件工具类是通过JavaEmail实现，企业级项目一般都会专门的服务去发送邮件，但如果自己的小Demo，用工具类发送Email也未尝不可。
-可参考[EmailUtil](#EmailUtil Demo)如下，有兴趣的可以fork代码自己研究一下，代码有详情的注释。
+可参考[EmailUtil](#EmailUtil(Demo))如下，有兴趣的可以fork代码自己研究一下，代码有详情的注释。
 
 ### **xmlconfutil解析XMl配置工具类**
 解析工具通过JAXB实现，主要用于xml配置文件的实例化，以及生成配置类javaBean对应的xml
@@ -223,7 +223,7 @@ csv作为开发常常需要处理的文件格式，本项目主要提供以下�
 - 代码规范，请遵循[阿里巴巴Java开发手册](https://yq.aliyun.com/articles/69327)
 
 ## 使用示例
-### LangArabicNumConvertUtil Demo
+### LangArabicNumConvertUtil(Demo)
 ```java
 // 中文转阿拉伯数字示例
 LangArabicNumConvertUtil.lang2ArabicNumber("北京三里墩五星小区第陆拾肆栋六零二室", "zh");
@@ -238,7 +238,7 @@ LangArabicNumConvertUtil.arabic2LangNumber("北京3里墩5星小区第64栋602�
 // 北京三里墩五星小区第六十四栋六百零二室
 ```
 
-### EmailUtil Demo
+### EmailUtil(Demo)
 ```java
 public class EmailUtilTest {
     @Before
