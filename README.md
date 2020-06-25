@@ -20,6 +20,7 @@
     - [LangArabicNumConvertUtil(语言数字与阿拉伯数字转换工具类)](#langarabicnumconvertutil语言数字与阿拉伯数字转换工具类)
     - [StringUtil(字符串工具类)](#stringutil字符串工具类)
     - [EmailUtil(邮件发送工具类)](#emailutil邮件发送工具类)
+    - [XmlConfUtil(解析XMl配置工具类)](#xmlconfutil解析XMl配置工具类)
 - [关于开源](#关于开源)
 - [Contributor](#contributor)
 - [更新日志](#更新日志)
@@ -184,6 +185,11 @@ csv作为开发常常需要处理的文件格式，本项目主要提供以下�
 邮件工具类是通过JavaEmail实现，企业级项目一般都会专门的服务去发送邮件，但如果自己的小Demo，用工具类发送Email也未尝不可。
 可参考[EmailUtil](#EmailUtil Demo)如下，有兴趣的可以fork代码自己研究一下，代码有详情的注释。
 
+### **xmlconfutil解析XMl配置工具类**
+解析工具通过JAXB实现，主要用于xml配置文件的实例化，以及生成配置类javaBean对应的xml
+- **<T> T xml2JBean(Class<?> clazz, InputStream in)**，将xml实例化为T类型实例
+- **void jBean2Xml(Object instance, OutputStream out)**，将配置类实例instance解析为xml
+
 ## 关于开源
 本项目是开源项目，若有摘取本项目的代码，请注明出处！（码字不易，请尊重开源精神）
 
@@ -205,6 +211,8 @@ csv作为开发常常需要处理的文件格式，本项目主要提供以下�
 </a>
 <a href="https://github.com/lizeze">
     <img src="https://avatars2.githubusercontent.com/u/33169073?s=400&u=f48fa869f2a1739f7716ac80c181300473833796&v=4" width="45px">
+<a href="https://github.com/leithda">
+    <img src="https://avatars1.githubusercontent.com/u/18017935?s=460&u=11a8d9036b8560dc6b1d335e9b1b4f8f5bdbdf48&v=4" width="45px">	
 </a>
 
 
