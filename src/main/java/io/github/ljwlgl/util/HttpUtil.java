@@ -49,8 +49,9 @@ public class HttpUtil {
     public static String doGet(String uri) throws IOException {
         HttpGet get = new HttpGet(uri);
         get.setConfig(CONFIG);
-        CloseableHttpResponse httpResponse = client.execute(get);
-        return generateHttpResponse(httpResponse);
+        try (CloseableHttpResponse httpResponse = client.execute(get)) {
+            return generateHttpResponse(httpResponse);
+        }
     }
 
     public static String doGet(String url, Map<String, String> queryParam) throws IOException {
@@ -58,8 +59,9 @@ public class HttpUtil {
 
         HttpGet get = new HttpGet(uri);
         get.setConfig(CONFIG);
-        CloseableHttpResponse httpResponse = client.execute(get);
-        return generateHttpResponse(httpResponse);
+        try (CloseableHttpResponse httpResponse = client.execute(get)) {
+            return generateHttpResponse(httpResponse);
+        }
     }
 
     /**
@@ -77,8 +79,9 @@ public class HttpUtil {
         HttpEntity entity = new StringEntity(json, DEFAULT_CHARSET);
         post.setEntity(entity);
         post.setHeader("Content-Type", "application/json");
-        CloseableHttpResponse httpResponse = client.execute(post);
-        return generateHttpResponse(httpResponse);
+        try (CloseableHttpResponse httpResponse = client.execute(post)) {
+            return generateHttpResponse(httpResponse);
+        }
     }
 
     /**
@@ -99,8 +102,9 @@ public class HttpUtil {
         HttpEntity entity = new StringEntity(json, DEFAULT_CHARSET);
         post.setEntity(entity);
         post.setHeader("Content-Type", "application/json");
-        CloseableHttpResponse httpResponse = client.execute(post);
-        return generateHttpResponse(httpResponse);
+        try (CloseableHttpResponse httpResponse = client.execute(post)) {
+            return generateHttpResponse(httpResponse);
+        }
     }
 
     /**
@@ -116,16 +120,18 @@ public class HttpUtil {
         post.setConfig(CONFIG);
         HttpEntity entity = new UrlEncodedFormEntity(urlEncodedForm, DEFAULT_CHARSET);
         post.setEntity(entity);
-        CloseableHttpResponse httpResponse = client.execute(post);
-        return generateHttpResponse(httpResponse);
+        try (CloseableHttpResponse httpResponse = client.execute(post)) {
+            return generateHttpResponse(httpResponse);
+        }
     }
 
     public static String doPost(String url) throws IOException {
         URI uri = generateURLParams(url, null);
         HttpPost post = new HttpPost(uri);
         post.setConfig(CONFIG);
-        CloseableHttpResponse httpResponse = client.execute(post);
-        return generateHttpResponse(httpResponse);
+        try (CloseableHttpResponse httpResponse = client.execute(post)) {
+            return generateHttpResponse(httpResponse);
+        }
     }
 
     private static URI generateURLParams(String url, Map<String, String> params) {

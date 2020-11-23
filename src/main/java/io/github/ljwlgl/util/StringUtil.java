@@ -32,9 +32,9 @@ public class StringUtil {
 
     public static String appendZero(String str, int strLength) {
         int strLen = str.length();
-        StringBuffer sb = null;
+        StringBuilder sb = null;
         while (strLen < strLength) {
-            sb = new StringBuffer();
+            sb = new StringBuilder();
             sb.append("0").append(str);// 左补0
             // sb.append(str).append("0");//右补0
             str = sb.toString();
@@ -167,6 +167,23 @@ public class StringUtil {
         }
         builder.append(arr[j - 1]);
         return builder.toString().trim();
+    }
+
+    /**
+     * 全角转半角
+     * @param input String.
+     * @return 半角字符串
+     */
+    public static String ToDBC(String input) {
+        char c[] = input.toCharArray();
+        for (int i = 0; i < c.length; i++) {
+            if (c[i] == '\u3000')
+                c[i] = ' ';
+            else if (c[i] > '\uFF00' && c[i] < '\uFF5F')
+                c[i] = (char) (c[i] - 65248);
+        }
+
+        return new String(c);
     }
 
 }

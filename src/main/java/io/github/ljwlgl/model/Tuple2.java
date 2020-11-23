@@ -1,4 +1,4 @@
-package io.github.ljwlgl.modle;
+package io.github.ljwlgl.model;
 
 /**
  * @author zq_gan

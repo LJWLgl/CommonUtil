@@ -1,4 +1,6 @@
-package io.github.ljwlgl.util;
+package io.github.ljwlgl.fileutil;
+
+import io.github.ljwlgl.util.StringUtil;
 
 import java.io.*;
 import java.util.Properties;
@@ -8,7 +10,7 @@ import java.util.Properties;
  * @since 2018/10/31
  **/
 
-public class FileUtil {
+public class PropertiesUtil {
 
     public static String DEFAULT_PATH_PREFIX = "/gzq/config/ares";
 
@@ -19,7 +21,7 @@ public class FileUtil {
      * @return value
      */
     public static String getProperty(String path, String key) {
-        InputStream in = FileUtil.class.getResourceAsStream(path);
+        InputStream in = PropertiesUtil.class.getResourceAsStream(path);
         Properties prop = new Properties();
         try {
             prop.load(in);
@@ -50,7 +52,7 @@ public class FileUtil {
 
             Reader reader = new InputStreamReader(new FileInputStream(jsonFile), "utf-8");
             int ch = 0;
-            StringBuffer sb = new StringBuffer();
+            StringBuilder sb = new StringBuilder();
             while ((ch = reader.read()) != -1) {
                 sb.append((char) ch);
             }
