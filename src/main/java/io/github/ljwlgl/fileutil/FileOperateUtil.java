@@ -78,7 +78,10 @@ public class FileOperateUtil {
             if(zipEntry.isDirectory()) {
                 continue;
             }else {
-                File tempFile = new File(toPath + zipEntry.getName());
+                File tempFile = new File(toPath, zipEntry.getName());
+                if (!tempFile.toPath().normalize().startsWith(toPath)) {
+                    throw new IOException("Bad zip entry");
+                }
                 list.add(tempFile);
                 tempFile.getParentFile().mkdirs();
                 tempFile.createNewFile();
